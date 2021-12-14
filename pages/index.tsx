@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import styles from '../styles/Home.module.css';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
@@ -10,7 +11,14 @@ const Home: NextPage = () => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <main></main>
+      <main className={styles.main}>
+        <section className={styles['title-wrapper']}>
+          {/* main title */}
+          <h1 className={styles['main-title']}>Hedendaagse resten van de pan-Helleense cultuur</h1>
+          {/* subtitle */}
+          <h2>Digitale Exploratie</h2>
+        </section>
+      </main>
 
       <footer></footer>
     </div>
