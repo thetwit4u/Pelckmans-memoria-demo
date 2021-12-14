@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import styles from '../styles/Home.module.css';
 import Head from 'next/head';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   return (
@@ -11,16 +11,21 @@ const Home: NextPage = () => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <main className={styles.main}>
-        <section className={styles['title-wrapper']}>
-          {/* main title */}
-          <h1 className={styles['main-title']}>Hedendaagse resten van de pan-Helleense cultuur</h1>
-          {/* subtitle */}
-          <h2>Digitale Exploratie</h2>
+      <main className='grid grid-rows-homepage-layout mx-auto w-11/12 min-h-screen'>
+        <section className='flex flex-col row-start-2 justify-center items-center'>
+          <section className='text-center'>
+            <h1 className='my-4 text-4xl text-white'>Hedendaagse resten van de pan-Helleense cultuur</h1>
+            <h2 className='my-6 text-3xl text-white'>Digitale Exploratie</h2>
+          </section>
+          <section className='flex justify-center'>
+            <Link href='/placeholder-path'>
+              <a className='py-4 px-4 text-base tracking-wider text-white uppercase bg-secondary hover:bg-secondary-dark border-0 shadow-button-homepage hover:shadow-button-homepage-hover transition-all hover:translate-y-px cursor-pointer rounded-[3px]'>
+                Hedendaagse resten van de pan-Helleense cultuur
+              </a>
+            </Link>
+          </section>
         </section>
       </main>
-
-      <footer></footer>
     </div>
   );
 };
