@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
+import classNames from 'classnames';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
@@ -15,19 +16,27 @@ const Default: NextPage = () => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <main className='grid grid-cols-3 mx-auto'>
+      <main className='flex justify-end mx-auto'>
         {/* navigation bar */}
         {!showMenu && (
-          <div className='absolute' onClick={handleMenu}>
+          <div className='absolute left-0' onClick={handleMenu}>
             X
           </div>
         )}
         <div
-          className={
-            showMenu
-              ? `transition-all fixed left-0 w-4/12 h-screen bg-secondary`
-              : `transition-all fixed left-[-34%] w-4/12 h-screen bg-secondary`
-          }
+          className={classNames(
+            'transition-all',
+            'duration-500',
+            'ease-in-out',
+            'fixed',
+            'w-4/12',
+            'h-screen',
+            'bg-secondary',
+            {
+              'left-0': showMenu,
+              'left-[-50%]': !showMenu
+            }
+          )}
         >
           <section className='bg-primary'>
             <div className='flex justify-between mx-auto w-11/12'>
@@ -38,7 +47,12 @@ const Default: NextPage = () => {
             </div>
           </section>
         </div>
-        <div className={showMenu ? 'col-span-2 col-start-2 bg-primary' : 'col-span-3 col-start-1 bg-primary'}>
+        <div
+          className={classNames('transition-all duration-500 ', {
+            'w-8/12 bg-secondary': showMenu,
+            'w-full bg-primary': !showMenu
+          })}
+        >
           {/* article content */}
           <div className='grid grid-cols-2 mx-auto w-10/12 bg-primary-light'>
             <div className='col-span-2'>
