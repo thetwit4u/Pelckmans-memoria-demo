@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <link href='/favicon.ico' rel='icon' />
       </Head>
 
-      <main className='grid grid-rows-homepage-layout mx-auto w-11/12 min-h-screen'>
+      <main className="grid grid-rows-homepage-layout mx-auto w-11/12 min-h-screen bg-center bg-no-repeat bg-cover bg-[url('https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/978-90-289-9944_2_Memo_2_B.jpg')]">
         <section className='flex flex-col row-start-2 justify-center items-center'>
           <section className='text-center'>
             <h1 className='my-4 text-4xl text-white'>Hedendaagse resten van de pan-Helleense cultuur</h1>
