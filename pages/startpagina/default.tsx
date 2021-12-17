@@ -44,14 +44,18 @@ const Default: NextPage = () => {
         >
           <section className='py-2 bg-primary min-h-[60px]'>
             <div className='flex justify-between items-center mx-auto w-11/12'>
-              <h1 className='max-w-[250px]'>
-                <Image
-                  alt='Memoria 2 logo'
-                  height='111px'
-                  src='https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
-                  width='558px'
-                />
-              </h1>
+              <Link href='/'>
+                <a>
+                  <h1 className='max-w-[250px]'>
+                    <Image
+                      alt='Memoria 2 logo'
+                      height='111px'
+                      src='https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
+                      width='558px'
+                    />
+                  </h1>
+                </a>
+              </Link>
 
               <FaTimes className='text-2xl text-white cursor-pointer' onClick={handleMenu} />
             </div>
