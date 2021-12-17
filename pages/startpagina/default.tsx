@@ -2,6 +2,8 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import React from 'react';
 import classNames from 'classnames';
+import Image from 'next/image';
+import { FaTimes } from 'react-icons/fa';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
@@ -38,12 +40,18 @@ const Default: NextPage = () => {
             }
           )}
         >
-          <section className='bg-primary'>
-            <div className='flex justify-between mx-auto w-11/12'>
-              <h1 className='text-4xl'>Memoria</h1>
-              <span className='text-4xl' onClick={handleMenu}>
-                X
-              </span>
+          <section className='py-2 bg-primary min-h-[60px]'>
+            <div className='flex justify-between items-center mx-auto w-11/12'>
+              <div className='max-w-[250px]'>
+                <Image
+                  alt='Memoria 2 logo'
+                  height='111px'
+                  src='https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
+                  width='558px'
+                />
+              </div>
+
+              <FaTimes className='text-2xl text-white cursor-pointer' onClick={handleMenu} />
             </div>
           </section>
         </div>
