@@ -4,7 +4,7 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaAngleLeft, FaTimes } from 'react-icons/fa';
+import { FaAngleLeft, FaBars, FaTimes } from 'react-icons/fa';
 import { Button } from '@components';
 
 const Default: NextPage = () => {
@@ -21,11 +21,13 @@ const Default: NextPage = () => {
       </Head>
 
       <main className='flex justify-end mx-auto'>
-        {/* navigation bar */}
         {!showMenu && (
-          <div className='absolute left-0' onClick={handleMenu}>
-            X
-          </div>
+          <button
+            className='absolute top-6 left-6 py-4 px-6 bg-secondary hover:bg-secondary-dark rounded-md border-0 shadow-button-homepage hover:shadow-button-homepage-hover transition-all hover:translate-y-px'
+            onClick={handleMenu}
+          >
+            <FaBars className='text-white text-md' />
+          </button>
         )}
         <div
           className={classNames(
