@@ -15,6 +15,17 @@ module.exports = {
         light: '#81DAA2',
         DEFAULT: '#67c088',
         dark: '#4EA76F'
+      },
+      tertiary: {
+        light: '#006d8b',
+        DEFAULT: '#004d62',
+        dark: '#004558'
+      },
+
+      grey: {
+        light: '#f1f3f5',
+        DEFAULT: '#F0F2F4',
+        dark: '#d4d9df'
       }
     },
     extend: {
