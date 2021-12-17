@@ -66,7 +66,7 @@ const Default: NextPage = () => {
 
             <section className='my-6'>
               <p>Maak je keuze:</p>
-              <ul className='py-4 pl-10 leading-8 list-disc list-inside text-tertiary'>
+              <ul className='inline-block py-4 pl-10 leading-8 list-disc list-inside text-tertiary'>
                 <li className='group hover:text-secondary cursor-pointer'>
                   <Link href='/startpagina/placeholder'>
                     <a className='group-hover:text-secondary'>Orakel</a>
