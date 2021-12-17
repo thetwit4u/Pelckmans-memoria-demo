@@ -4,7 +4,8 @@ import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaTimes } from 'react-icons/fa';
+import { FaAngleLeft, FaTimes } from 'react-icons/fa';
+import { Button } from '@components';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
@@ -87,6 +88,14 @@ const Default: NextPage = () => {
                 </li>
               </ul>
             </section>
+
+            <Link href='/'>
+              <a>
+                <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>
+                  Startpagina
+                </Button>
+              </a>
+            </Link>
           </section>
         </div>
         <div
