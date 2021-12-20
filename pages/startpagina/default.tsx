@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleLeft, FaBars, FaTimes } from 'react-icons/fa';
-import { Button, WatchArticle } from '@components';
+import { Button, GalleryArticle, WatchArticle } from '@components';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
@@ -16,6 +16,30 @@ const Default: NextPage = () => {
     'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg',
     'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png',
     'https://digitaleverkenning.pelckmans.be/memoria2-familia/wp-content/uploads/sites/52/2020/09/529876_9779_mem2_ict_07_familia_008.jpg'
+  ];
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const placeholderImagesGallery = [
+    {
+      alt: 'sample image 1',
+      id: 1,
+      src: 'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_ict_04_cultuur_011-e1600081703586.jpg'
+    },
+    {
+      alt: 'sample image 2',
+      id: 2,
+      src: 'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_ict_04_cultuur_012-e1600081611564.jpg'
+    },
+    {
+      alt: 'sample image 3',
+      id: 3,
+      src: 'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_ict_04_cultuur_013-e1600081578884.jpg'
+    },
+    {
+      alt: 'sample image 4',
+      id: 4,
+      src: 'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_ict_04_cultuur_018-e1600081439148.jpg'
+    }
   ];
 
   return (
@@ -117,6 +141,7 @@ const Default: NextPage = () => {
             <WatchArticle alt='image' size='3/4' src={placeholderImages[0]} title='Aangepaste titel' />
             <WatchArticle alt='image' size='4/4' src={placeholderImages[1]} />
             <WatchArticle alt='image' size='4/4' src={placeholderImages[2]} />
+            <GalleryArticle />
           </section>
         </div>
       </main>
