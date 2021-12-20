@@ -5,12 +5,17 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleLeft, FaBars, FaTimes } from 'react-icons/fa';
-import { Button } from '@components';
+import { Button, WatchArticle } from '@components';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
 
   const handleMenu = () => setShowMenu(prevState => !prevState);
+
+  const placeholderImages = [
+    'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg',
+    'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png'
+  ];
 
   return (
     <div>
@@ -24,8 +29,7 @@ const Default: NextPage = () => {
         {!showMenu && (
           <button
             className='absolute top-6 left-6 py-4 px-6 bg-secondary hover:bg-secondary-dark rounded-md border-0 shadow-button-homepage hover:shadow-button-homepage-hover transition-all hover:translate-y-px'
-            onClick={handleMenu}
-          >
+            onClick={handleMenu}>
             <FaBars className='text-white text-md' />
           </button>
         )}
@@ -42,8 +46,7 @@ const Default: NextPage = () => {
               'left-0': showMenu,
               'left-[-50%]': !showMenu
             }
-          )}
-        >
+          )}>
           <section className='py-2 bg-primary min-h-[60px]'>
             <div className='flex justify-between items-center mx-auto w-11/12'>
               <Link href='/'>
@@ -106,20 +109,13 @@ const Default: NextPage = () => {
         </div>
         <div
           className={classNames('transition-all duration-500', {
-            'w-8/12 bg-secondary': showMenu,
-            'w-full bg-primary': !showMenu
-          })}
-        >
-          {/* article content */}
-          <div className='grid grid-cols-2 mx-auto w-10/12 bg-primary-light'>
-            <div className='col-span-2'>
-              Article 1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta dolore doloribus id impedit iste
-              labore magni, maiores quo reiciendis repellat repellendus, suscipit. Est maxime nemo nisi sapiente ut.
-              Consectetur, soluta.
-            </div>
-            <div>Article 2</div>
-            <div>Article 3</div>
-          </div>
+            'w-8/12': showMenu,
+            'w-full': !showMenu
+          })}>
+          <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
+            <WatchArticle alt='image' size='3/4' src={placeholderImages[0]} />
+            <WatchArticle alt='image' size='4/4' src={placeholderImages[1]} />
+          </section>
         </div>
       </main>
     </div>
