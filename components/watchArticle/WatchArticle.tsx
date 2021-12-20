@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 import { WatchArticleProps } from './types';
 import classNames from 'classnames';
 
-const WatchArticle = ({ alt, src, size }: WatchArticleProps): JSX.Element => {
+const WatchArticle = ({ alt, src, size, title = 'Kijk' }: WatchArticleProps): JSX.Element => {
   return (
     <article
       className={classNames('bg-white border border-grey-dark m-4', {
@@ -22,7 +22,7 @@ const WatchArticle = ({ alt, src, size }: WatchArticleProps): JSX.Element => {
           title='Media file icon'
           width='1.6em'
         />
-        Kijk
+        {title}
       </header>
 
       <section className={`${styles['image-container']} p-6`}>

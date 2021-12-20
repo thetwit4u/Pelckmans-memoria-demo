@@ -14,7 +14,8 @@ const Default: NextPage = () => {
 
   const placeholderImages = [
     'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg',
-    'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png'
+    'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png',
+    'https://digitaleverkenning.pelckmans.be/memoria2-familia/wp-content/uploads/sites/52/2020/09/529876_9779_mem2_ict_07_familia_008.jpg'
   ];
 
   return (
@@ -113,8 +114,9 @@ const Default: NextPage = () => {
             'w-full': !showMenu
           })}>
           <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
-            <WatchArticle alt='image' size='3/4' src={placeholderImages[0]} />
+            <WatchArticle alt='image' size='3/4' src={placeholderImages[0]} title='Aangepaste titel' />
             <WatchArticle alt='image' size='4/4' src={placeholderImages[1]} />
+            <WatchArticle alt='image' size='4/4' src={placeholderImages[2]} />
           </section>
         </div>
       </main>
