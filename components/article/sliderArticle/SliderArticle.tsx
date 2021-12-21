@@ -1,6 +1,5 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from '../imageArticle/styles.module.scss';
 import Image from 'next/image';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { EffectFade, Navigation, SwiperOptions } from 'swiper';
@@ -23,8 +22,8 @@ const SliderArticle = ({ src }: SliderArticleProps): JSX.Element => {
       <Swiper {...SwiperParams} className='group'>
         {src.map(image => {
           return (
-            <SwiperSlide key={image.id} className={`${styles['image-container']} relative`}>
-              <Image alt={image.alt} className={styles['image-item']} layout='fill' src={image.src} />
+            <SwiperSlide key={image.id} className='relative image-container'>
+              <Image alt={image.alt} className='image-item' layout='fill' src={image.src} />
 
               {image.caption && (
                 <p className='absolute right-0 bottom-0 left-0 p-2 text-xs text-white bg-black opacity-80'>
