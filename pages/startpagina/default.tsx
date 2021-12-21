@@ -109,7 +109,11 @@ const Default: NextPage = () => {
             'w-full': !showMenu
           })}>
           <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
-            <Article icon='watch' size='3/4' title='Aangepaste Titel'>
+            <Article
+              caption={'This is an example of an article description.'}
+              icon='watch'
+              size='3/4'
+              title='Aangepaste Titel'>
               <ImageArticle alt='image' src={placeholderImages[0]} />
             </Article>
 

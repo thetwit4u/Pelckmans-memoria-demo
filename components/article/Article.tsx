@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import IconFileMedia from '@icons/icon-file-media.svg';
 import { ArticleProps } from './types';
 
-const Article = ({ children, icon, size = '4/4', title = 'Kijk' }: ArticleProps): JSX.Element => {
+const Article = ({ caption, children, icon, size = '4/4', title = 'Kijk' }: ArticleProps): JSX.Element => {
   const renderIcon = () => {
     const iconParams = {
       className: 'block mr-2',
@@ -31,6 +31,11 @@ const Article = ({ children, icon, size = '4/4', title = 'Kijk' }: ArticleProps)
         {renderIcon()} {title}
       </header>
       {children}
+      {caption && (
+        <section className='p-3 my-6 mx-6 border border-grey-dark'>
+          <p className='text-tertiary'>{caption}</p>
+        </section>
+      )}
     </article>
   );
 };
