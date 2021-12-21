@@ -1,10 +1,10 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import styles from '../watchArticle/styles.module.scss';
+import styles from '../imageArticle/styles.module.scss';
 import Image from 'next/image';
-import { EffectFade, Navigation, SwiperOptions } from 'swiper';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { GalleryArticleProps } from './types';
+import { EffectFade, Navigation, SwiperOptions } from 'swiper';
+import { SliderArticleProps } from './types';
 
 const SwiperParams: SwiperOptions = {
   loop: true,
@@ -17,7 +17,7 @@ const SwiperParams: SwiperOptions = {
   slidesPerView: 1
 };
 
-const GalleryArticle = ({ src }: GalleryArticleProps): JSX.Element => {
+const SliderArticle = ({ src }: SliderArticleProps): JSX.Element => {
   return (
     <section className='col-span-4'>
       <Swiper {...SwiperParams} className='group'>
@@ -47,4 +47,4 @@ const GalleryArticle = ({ src }: GalleryArticleProps): JSX.Element => {
   );
 };
 
-export default GalleryArticle;
+export default SliderArticle;

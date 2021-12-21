@@ -1,3 +1,4 @@
 export { default as Button } from './button/Button';
-export { default as WatchArticle } from './watchArticle/WatchArticle';
-export { default as GalleryArticle } from './galleryArticle/GalleryArticle';
+export { default as Article } from './article/Article';
+export { default as ImageArticle } from './article/imageArticle/ImageArticle';
+export { default as SliderArticle } from './article/sliderArticle/SliderArticle';
