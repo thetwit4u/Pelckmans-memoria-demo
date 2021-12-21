@@ -33,3 +33,7 @@ export const placeholderSliderGallery = [
     caption: ''
   }
 ];
+
+export const placeholderVideos = [
+  'https://digitaleverkenning.pelckmans.be/memoria2-soldaat/wp-content/uploads/sites/61/2020/10/529876_9979_mem2_ict_07_soldaat_film1.mp4?_=1'
+];

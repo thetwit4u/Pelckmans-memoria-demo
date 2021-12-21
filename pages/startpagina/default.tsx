@@ -1,12 +1,12 @@
+import React from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
-import React from 'react';
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaAngleLeft, FaBars, FaTimes } from 'react-icons/fa';
-import { Article, Button, ImageArticle, SliderArticle } from '@components';
-import { placeholderImages, placeholderSliderGallery } from '../../assets/data/placeholderData';
+import { Article, Button, ImageArticle, SliderArticle, VideoArticle } from '@components';
+import { placeholderImages, placeholderSliderGallery, placeholderVideos } from '../../assets/data/placeholderData';
 
 const Default: NextPage = () => {
   const [showMenu, setShowMenu] = React.useState(true);
@@ -123,6 +123,10 @@ const Default: NextPage = () => {
 
             <Article icon='watch'>
               <SliderArticle src={placeholderSliderGallery} />
+            </Article>
+
+            <Article icon='watch'>
+              <VideoArticle src={placeholderVideos[0]} />
             </Article>
           </section>
         </div>
