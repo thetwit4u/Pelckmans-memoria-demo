@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@components": ["./components/index.ts"],
+      "@layouts": ["./layouts/index.ts"],
       "@icons/*": ["./assets/icons/*"]
     }
     },
