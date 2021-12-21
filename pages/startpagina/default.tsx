@@ -22,7 +22,7 @@ const Default: NextPage = () => {
         <Drawer open={showDrawer} onClose={handleDrawerToggle} />
         {!showDrawer && <HamburgerMenu onClick={handleDrawerToggle} />}
 
-        <div
+        <section
           className={classNames('transition-all duration-500', {
             'w-8/12': showDrawer,
             'w-full': !showDrawer
@@ -52,7 +52,7 @@ const Default: NextPage = () => {
               <VideoArticle src={placeholderVideos[0]} />
             </Article>
           </section>
-        </div>
+        </section>
       </main>
     </div>
   );
