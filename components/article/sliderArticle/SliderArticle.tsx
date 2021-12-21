@@ -19,7 +19,7 @@ const SwiperParams: SwiperOptions = {
 
 const SliderArticle = ({ src }: SliderArticleProps): JSX.Element => {
   return (
-    <section className='col-span-4'>
+    <section className='p-6'>
       <Swiper {...SwiperParams} className='group'>
         {src.map(image => {
           return (
