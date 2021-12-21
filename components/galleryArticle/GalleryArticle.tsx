@@ -27,7 +27,7 @@ const GalleryArticle = ({ src }: GalleryArticleProps): JSX.Element => {
               <Image alt={image.alt} className={styles['image-item']} layout='fill' src={image.src} />
 
               {image.caption && (
-                <p className='absolute bottom-0 p-2 text-xs text-white bg-black opacity-80'>
+                <p className='absolute right-0 bottom-0 left-0 p-2 text-xs text-white bg-black opacity-80'>
                   <span className='opacity-100'>{image.caption}</span>
                 </p>
               )}
