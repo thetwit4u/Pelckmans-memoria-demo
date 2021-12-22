@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Button } from '@components';
 import { HomeLayout } from '@layouts';
+import { Button } from '@components';
 import * as placeholder from '../assets/data/placeholderData';
 
 const Home = () => {

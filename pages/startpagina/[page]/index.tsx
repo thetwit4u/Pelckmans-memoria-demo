@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { FaAngleLeft } from 'react-icons/fa';
 import { DefaultLayout } from '@layouts';
@@ -14,9 +15,8 @@ import {
   TextArticle,
   VideoArticle
 } from '@components';
-import * as placeholder from '../../../assets/data/placeholderData';
-import { useRouter } from 'next/router';
 import { capitalizeString } from '@utils';
+import * as placeholder from '../../../assets/data/placeholderData';
 
 const Page = () => {
   const router = useRouter();

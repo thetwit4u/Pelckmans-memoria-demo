@@ -1,6 +1,6 @@
 import React from 'react';
-import IconPlayButton from '@icons/icon-play-button.svg';
 import { VideoArticleProps } from './types';
+import IconPlayButton from '@icons/icon-play-button.svg';
 
 const VideoArticle = ({ src }: VideoArticleProps): JSX.Element => {
   const videoRef = React.useRef<HTMLVideoElement | null>(null);

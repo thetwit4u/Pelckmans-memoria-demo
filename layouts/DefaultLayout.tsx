@@ -1,6 +1,6 @@
 import React from 'react';
-import { DefaultLayoutProps } from './types';
 import Head from 'next/head';
+import { DefaultLayoutProps } from './types';
 
 const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
   return (

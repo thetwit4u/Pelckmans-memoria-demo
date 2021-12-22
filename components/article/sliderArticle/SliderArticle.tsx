@@ -1,8 +1,8 @@
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Navigation, SwiperOptions } from 'swiper';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { SliderArticleProps } from './types';
 
 const SwiperParams: SwiperOptions = {

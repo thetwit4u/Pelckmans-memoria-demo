@@ -1,13 +1,13 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
-import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
-import * as placeholder from '../../../assets/data/placeholderData';
 import Link from 'next/link';
-import { FaAngleLeft } from 'react-icons/fa';
-import classNames from 'classnames';
-import { DefaultLayout } from '@layouts';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
+import { FaAngleLeft } from 'react-icons/fa';
+import { DefaultLayout } from '@layouts';
+import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
 import { capitalizeString } from '@utils';
+import * as placeholder from '../../../assets/data/placeholderData';
 
 const ArticlePage = (): JSX.Element => {
   const [showDrawer, setShowDrawer] = React.useState(true);
