@@ -6,13 +6,17 @@ import classNames from 'classnames';
 import { FaAngleLeft } from 'react-icons/fa';
 import { DefaultLayout } from '@layouts';
 import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
-import { capitalizeString } from '@utils';
+import { capitalizeString, useRefHeight } from '@utils';
 import * as placeholder from '../../../assets/data/placeholderData';
 
 const ArticlePage = (): JSX.Element => {
   const [showDrawer, setShowDrawer] = React.useState(true);
+
   const router = useRouter();
   const { article, page } = router.query;
+
+  const drawerElement = React.useRef<HTMLDivElement>(null);
+  const [drawerHeight] = useRefHeight(drawerElement);
 
   const pageTitle = `${article && typeof article === 'string' && capitalizeString(article)} - ${
     page && typeof page === 'string' && capitalizeString(page)
@@ -27,7 +31,7 @@ const ArticlePage = (): JSX.Element => {
         <meta content='Memoria 2 Site Template - Article' name='description' />
       </Head>
 
-      <Drawer open={showDrawer} onClose={handleDrawerToggle}>
+      <Drawer ref={drawerElement} open={showDrawer} onClose={handleDrawerToggle}>
         <h2 className='mb-6 text-3xl leading-10 text-tertiary capitalize'>{article}</h2>
 
         <Link href='/startpagina/page'>
@@ -42,9 +46,10 @@ const ArticlePage = (): JSX.Element => {
 
       <section
         className={classNames('transition-all duration-500', {
-          'w-8/12': showDrawer,
-          'w-full': !showDrawer
-        })}>
+          'w-full lg:w-8/12': showDrawer,
+          'w-full lg:w-full': !showDrawer
+        })}
+        style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
           <Article icon='watch'>
             <ImageArticle alt='image' src={placeholder.images[2]} />

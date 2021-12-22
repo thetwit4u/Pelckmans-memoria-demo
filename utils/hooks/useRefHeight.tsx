@@ -6,6 +6,12 @@ const useRefHeight = (ref: React.RefObject<HTMLDivElement>) => {
   const [height, setHeight] = React.useState(0);
 
   React.useEffect(() => {
+    if (isLargeScreen || !ref.current) return;
+
+    setHeight(ref.current.clientHeight);
+  }, [isLargeScreen, ref]);
+
+  React.useEffect(() => {
     if (isLargeScreen) return;
 
     const handleResize = () => {
@@ -19,12 +25,6 @@ const useRefHeight = (ref: React.RefObject<HTMLDivElement>) => {
       window.removeEventListener('resize', handleResize);
     };
   });
-
-  React.useEffect(() => {
-    if (isLargeScreen || !ref.current) return;
-
-    setHeight(ref.current.clientHeight);
-  }, [isLargeScreen, ref]);
 
   return [height];
 };
