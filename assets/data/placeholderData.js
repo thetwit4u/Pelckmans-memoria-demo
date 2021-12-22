@@ -40,10 +40,10 @@ export const placeholderVideos = [
 
 export const placeholderTitle = 'Hedendaagse resten van de pan-Helleense cultuur';
 export const placeholderLinks = [
-  { id: 1, url: '/startpagina/placeholder', text: 'Orakel' },
-  { id: 2, url: '/startpagina/placeholder', text: 'Spelen' },
-  { id: 3, url: '/startpagina/placeholder', text: 'Tempel' },
-  { id: 4, url: '/startpagina/placeholder', text: 'Theater' }
+  { id: 1, url: '/site/startpagina/page/orakel', text: 'Orakel' },
+  { id: 2, url: '/site/startpagina/page/spelen', text: 'Spelen' },
+  { id: 3, url: '/site/startpagina/page/tempel', text: 'Tempel' },
+  { id: 4, url: '/site/startpagina/page/theater', text: 'Theater' }
 ];
 
 export const placeholderSiteSettings = {
