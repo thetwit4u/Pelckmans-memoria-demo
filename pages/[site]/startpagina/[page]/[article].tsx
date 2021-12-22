@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
-import { placeholderImages, placeholderSiteSettings } from '../../../../assets/data/placeholderData';
+import * as placeholder from '../../../../assets/data/placeholderData';
 import Link from 'next/link';
 import { FaAngleLeft } from 'react-icons/fa';
 import classNames from 'classnames';
@@ -29,7 +29,7 @@ const ArticlePage = (): JSX.Element => {
         <Link href='/site/startpagina/page'>
           <a>
             <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>
-              {placeholderSiteSettings.title}
+              {placeholder.siteSettings.title}
             </Button>
           </a>
         </Link>
@@ -43,7 +43,7 @@ const ArticlePage = (): JSX.Element => {
         })}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
           <Article icon='watch'>
-            <ImageArticle alt='image' src={placeholderImages[2]} />
+            <ImageArticle alt='image' src={placeholder.images[2]} />
           </Article>
 
           <Article icon='read' title='Lees'>

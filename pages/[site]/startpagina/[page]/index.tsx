@@ -14,13 +14,7 @@ import {
   TextArticle,
   VideoArticle
 } from '@components';
-import {
-  placeholderImages,
-  placeholderLinks,
-  placeholderSiteSettings,
-  placeholderSliderGallery,
-  placeholderVideos
-} from '../../../../assets/data/placeholderData';
+import * as placeholder from '../../../../assets/data/placeholderData';
 
 const Page = () => {
   const [showDrawer, setShowDrawer] = React.useState(true);
@@ -36,12 +30,12 @@ const Page = () => {
       </Head>
 
       <Drawer open={showDrawer} onClose={handleDrawerToggle}>
-        <h2 className='text-3xl leading-10 text-tertiary'>{placeholderSiteSettings.title}</h2>
+        <h2 className='text-3xl leading-10 text-tertiary'>{placeholder.siteSettings.title}</h2>
 
         <section className='my-6'>
           <p>Maak je keuze:</p>
           <ul className='inline-block py-4 pl-10 leading-8 list-disc list-inside text-tertiary'>
-            {placeholderLinks.map(link => {
+            {placeholder.links.map(link => {
               return (
                 <li key={link.id} className='group hover:text-secondary cursor-pointer'>
                   <Link href={link.url}>
@@ -70,15 +64,15 @@ const Page = () => {
         })}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
           <Article icon='watch'>
-            <ImageArticle alt='image' src={placeholderImages[2]} />
+            <ImageArticle alt='image' src={placeholder.images[2]} />
           </Article>
 
           <Article icon='watch'>
-            <SliderArticle src={placeholderSliderGallery} />
+            <SliderArticle src={placeholder.sliderGallery} />
           </Article>
 
           <Article icon='watch'>
-            <VideoArticle src={placeholderVideos[0]} />
+            <VideoArticle src={placeholder.videos[0]} />
           </Article>
 
           <Article icon='read' title='Lees'>

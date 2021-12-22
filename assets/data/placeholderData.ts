@@ -1,10 +1,10 @@
-export const placeholderImages = [
+export const images = [
   'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg',
   'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png',
   'https://digitaleverkenning.pelckmans.be/memoria2-familia/wp-content/uploads/sites/52/2020/09/529876_9779_mem2_ict_07_familia_008.jpg'
 ];
 
-export const placeholderSliderGallery = [
+export const sliderGallery = [
   {
     alt: 'sample image 1',
     id: 1,
@@ -34,19 +34,18 @@ export const placeholderSliderGallery = [
   }
 ];
 
-export const placeholderVideos = [
+export const videos = [
   'https://digitaleverkenning.pelckmans.be/memoria2-soldaat/wp-content/uploads/sites/61/2020/10/529876_9979_mem2_ict_07_soldaat_film1.mp4?_=1'
 ];
 
-export const placeholderTitle = 'Hedendaagse resten van de pan-Helleense cultuur';
-export const placeholderLinks = [
+export const links = [
   { id: 1, url: '/site/startpagina/page/orakel', text: 'Orakel' },
   { id: 2, url: '/site/startpagina/page/spelen', text: 'Spelen' },
   { id: 3, url: '/site/startpagina/page/tempel', text: 'Tempel' },
   { id: 4, url: '/site/startpagina/page/theater', text: 'Theater' }
 ];
 
-export const placeholderSiteSettings = {
+export const siteSettings = {
   title: 'Hedendaagse resten van de pan-Helleense cultuur',
   type: 'Digitale Exploratie'
 };
