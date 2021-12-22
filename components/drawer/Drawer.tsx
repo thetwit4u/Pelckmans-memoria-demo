@@ -1,27 +1,18 @@
 import React from 'react';
-import { FaTimes } from 'react-icons/fa';
-import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaTimes } from 'react-icons/fa';
+import classNames from 'classnames';
 import { DrawerProps } from './types';
 
-const Drawer = ({ children, open, onClose }: DrawerProps): JSX.Element => {
+const Drawer = React.forwardRef<HTMLDivElement | null, DrawerProps>(({ children, open, onClose }, ref): JSX.Element => {
   return (
     <section
-      className={classNames(
-        'transition-all',
-        'duration-500',
-        'ease-in-out',
-        'fixed',
-        'w-4/12',
-        'h-screen',
-        'bg-grey',
-        'z-50',
-        {
-          'left-0': open,
-          'left-[-50%]': !open
-        }
-      )}>
+      ref={ref}
+      className={classNames('transition-all', 'duration-500', 'ease-in-out', 'bg-grey', 'z-50', {
+        'absolute top-0 w-full left-0 lg:left-0 lg:w-4/12 lg:h-screen lg:fixed': open,
+        'absolute top-[-100%] w-full lg:left-[-50%] lg:w-4/12 lg:top-0 lg:fixed': !open
+      })}>
       <section className='py-2 bg-primary min-h-[60px]'>
         <div className='flex justify-between items-center mx-auto w-11/12'>
           <Link href='/'>
@@ -44,6 +35,6 @@ const Drawer = ({ children, open, onClose }: DrawerProps): JSX.Element => {
       <section className='my-4 mx-auto w-11/12'>{children}</section>
     </section>
   );
-};
+});
 
 export default Drawer;

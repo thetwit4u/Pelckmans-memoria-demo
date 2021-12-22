@@ -11,6 +11,7 @@
       "noSortAlphabetically": false,
       "reservedFirst": true
     }],
+    "react/display-name": "off",
 
     // tailwind rules
     "tailwindcss/classnames-order": "warn",

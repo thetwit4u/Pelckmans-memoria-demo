@@ -18,7 +18,7 @@ const DefaultLayout = ({ children }: DefaultLayoutProps): JSX.Element => {
         <meta content='#ffffff' name='theme-color' />
         <link href='/favicon.ico' rel='icon' />
       </Head>
-      <main className='flex justify-end mx-auto'>{children}</main>
+      <main className='lg:flex lg:justify-end lg:mx-auto'>{children}</main>
     </>
   );
 };

@@ -15,18 +15,24 @@ import {
   TextArticle,
   VideoArticle
 } from '@components';
-import { capitalizeString } from '@utils';
+import { capitalizeString, useRefHeight } from '@utils';
 import * as placeholder from '../../../assets/data/placeholderData';
+import { useMediaQuery } from 'react-responsive';
 
 const Page = () => {
+  const [showDrawer, setShowDrawer] = React.useState(true);
+
   const router = useRouter();
   const { page } = router.query;
 
-  const [showDrawer, setShowDrawer] = React.useState(true);
+  const isLargeScreen = useMediaQuery({ query: '(min-width: 1024px)' });
 
-  const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
+  const drawerElement = React.useRef<HTMLDivElement>(null);
+  const [drawerHeight] = useRefHeight(drawerElement);
 
   const pageTitle = `${page && typeof page === 'string' && capitalizeString(page)}`;
+
+  const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
 
   return (
     <>
@@ -35,7 +41,7 @@ const Page = () => {
         <meta content='Memoria 2 Site Template - Page' name='description' />
       </Head>
 
-      <Drawer open={showDrawer} onClose={handleDrawerToggle}>
+      <Drawer ref={drawerElement} open={showDrawer} onClose={handleDrawerToggle}>
         <h2 className='text-3xl leading-10 text-tertiary'>{placeholder.siteSettings.title}</h2>
 
         <section className='my-6'>
@@ -64,10 +70,11 @@ const Page = () => {
       {!showDrawer && <HamburgerMenu onClick={handleDrawerToggle} />}
 
       <section
-        className={classNames('transition-all duration-500', {
-          'w-8/12': showDrawer,
-          'w-full': !showDrawer
-        })}>
+        className={classNames('block transition-all duration-500', {
+          'w-full lg:w-8/12 lg:pt-0': showDrawer,
+          'w-full lg:w-full pt-4 lg:pt-0': !showDrawer
+        })}
+        style={{ paddingTop: showDrawer && !isLargeScreen ? `${drawerHeight}px` : '0px' }}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
           <Article icon='watch'>
             <ImageArticle alt='image' src={placeholder.images[1]} />
