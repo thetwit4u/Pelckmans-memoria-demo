@@ -18,6 +18,7 @@
     "paths": {
       "@components": ["./components/index.ts"],
       "@layouts": ["./layouts/index.ts"],
+      "@utils": ["./utils/index.ts"],
       "@icons/*": ["./assets/icons/*"]
     }
     },

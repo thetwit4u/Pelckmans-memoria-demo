@@ -14,19 +14,25 @@ import {
   TextArticle,
   VideoArticle
 } from '@components';
-import * as placeholder from '../../../../assets/data/placeholderData';
+import * as placeholder from '../../../assets/data/placeholderData';
+import { useRouter } from 'next/router';
+import { capitalizeString } from '@utils';
 
 const Page = () => {
+  const router = useRouter();
+  const { page } = router.query;
+
   const [showDrawer, setShowDrawer] = React.useState(true);
 
   const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
 
+  const pageTitle = `${page && typeof page === 'string' && capitalizeString(page)}`;
+
   return (
     <>
       <Head>
-        <title>Memoria2 Template</title>
-        <meta content='Memoria2 Template' name='description' />
-        <link href='/favicon.ico' rel='icon' />
+        <title>{pageTitle}</title>
+        <meta content='Memoria 2 Site Template - Page' name='description' />
       </Head>
 
       <Drawer open={showDrawer} onClose={handleDrawerToggle}>
@@ -63,6 +69,10 @@ const Page = () => {
           'w-full': !showDrawer
         })}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
+          <Article icon='watch'>
+            <ImageArticle alt='image' src={placeholder.images[1]} />
+          </Article>
+
           <Article icon='watch'>
             <ImageArticle alt='image' src={placeholder.images[2]} />
           </Article>

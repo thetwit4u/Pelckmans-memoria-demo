@@ -6,12 +6,13 @@ import { HomeLayout } from '@layouts';
 import * as placeholder from '../assets/data/placeholderData';
 
 const Home = () => {
+  const pageTitle = `Startpagina - ${placeholder.siteSettings.title}`;
+
   return (
     <>
       <Head>
-        <title>Memoria2 Template</title>
-        <meta content='Memoria2 Template' name='description' />
-        <link href='/favicon.ico' rel='icon' />
+        <title>{pageTitle}</title>
+        <meta content='Memoria 2 Site Template - Startpagina' name='description' />
       </Head>
 
       <section className='flex flex-col row-start-2 justify-center items-center'>
@@ -20,7 +21,7 @@ const Home = () => {
           <h2 className='my-6 text-3xl text-white'>{placeholder.siteSettings.type}</h2>
         </section>
         <section className='flex justify-center'>
-          <Link href='/site/startpagina/page'>
+          <Link href='/startpagina/page'>
             <a>
               <Button>{placeholder.siteSettings.title}</Button>
             </a>

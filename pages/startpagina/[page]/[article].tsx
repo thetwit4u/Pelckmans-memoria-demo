@@ -1,32 +1,36 @@
 import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
-import * as placeholder from '../../../../assets/data/placeholderData';
+import * as placeholder from '../../../assets/data/placeholderData';
 import Link from 'next/link';
 import { FaAngleLeft } from 'react-icons/fa';
 import classNames from 'classnames';
 import { DefaultLayout } from '@layouts';
 import { useRouter } from 'next/router';
+import { capitalizeString } from '@utils';
 
 const ArticlePage = (): JSX.Element => {
   const [showDrawer, setShowDrawer] = React.useState(true);
   const router = useRouter();
-  const { article } = router.query;
+  const { article, page } = router.query;
+
+  const pageTitle = `${article && typeof article === 'string' && capitalizeString(article)} - ${
+    page && typeof page === 'string' && capitalizeString(page)
+  }`;
 
   const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
 
   return (
     <>
       <Head>
-        <title>Memoria2 Template</title>
-        <meta content='Memoria2 Template' name='description' />
-        <link href='/favicon.ico' rel='icon' />
+        <title>{pageTitle}</title>
+        <meta content='Memoria 2 Site Template - Article' name='description' />
       </Head>
 
       <Drawer open={showDrawer} onClose={handleDrawerToggle}>
         <h2 className='mb-6 text-3xl leading-10 text-tertiary capitalize'>{article}</h2>
 
-        <Link href='/site/startpagina/page'>
+        <Link href='/startpagina/page'>
           <a>
             <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>
               {placeholder.siteSettings.title}

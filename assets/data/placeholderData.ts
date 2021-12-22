@@ -39,10 +39,10 @@ export const videos = [
 ];
 
 export const links = [
-  { id: 1, url: '/site/startpagina/page/orakel', text: 'Orakel' },
-  { id: 2, url: '/site/startpagina/page/spelen', text: 'Spelen' },
-  { id: 3, url: '/site/startpagina/page/tempel', text: 'Tempel' },
-  { id: 4, url: '/site/startpagina/page/theater', text: 'Theater' }
+  { id: 1, url: '/startpagina/page/orakel', text: 'Orakel' },
+  { id: 2, url: '/startpagina/page/spelen', text: 'Spelen' },
+  { id: 3, url: '/startpagina/page/tempel', text: 'Tempel' },
+  { id: 4, url: '/startpagina/page/theater', text: 'Theater' }
 ];
 
 export const siteSettings = {
