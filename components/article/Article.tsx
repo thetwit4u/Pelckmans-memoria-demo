@@ -4,7 +4,7 @@ import IconFileMedia from '@icons/icon-file-media.svg';
 import IconInfo from '@icons/icon-info.svg';
 import { ArticleProps } from './types';
 
-const Article = ({ caption, children, icon, size = '4/4', title = 'Kijk' }: ArticleProps): JSX.Element => {
+const Article = ({ caption, children, icon, size = '4/4', title = 'Titel' }: ArticleProps): JSX.Element => {
   const renderIcon = () => {
     const iconParams = {
       className: 'block mr-2',
