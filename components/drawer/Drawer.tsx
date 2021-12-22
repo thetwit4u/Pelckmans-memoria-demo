@@ -3,10 +3,10 @@ import { FaAngleLeft, FaTimes } from 'react-icons/fa';
 import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
-import Button from '../button/Button';
 import { DrawerProps } from './types';
+import Button from '../button/Button';
 
-const Drawer = ({ open, onClose }: DrawerProps): JSX.Element => {
+const Drawer = ({ children, open, onClose }: DrawerProps): JSX.Element => {
   return (
     <section
       className={classNames(
@@ -43,37 +43,7 @@ const Drawer = ({ open, onClose }: DrawerProps): JSX.Element => {
       </section>
 
       <section className='my-4 mx-auto w-11/12'>
-        <h2 className='text-3xl leading-10 text-tertiary'>Hedendaagse resten van de pan-Helleense cultuur</h2>
-
-        <section className='my-6'>
-          <p>Maak je keuze:</p>
-          <ul className='inline-block py-4 pl-10 leading-8 list-disc list-inside text-tertiary'>
-            <li className='group hover:text-secondary cursor-pointer'>
-              <Link href='/startpagina/placeholder'>
-                <a className='group-hover:text-secondary'>Orakel</a>
-              </Link>
-            </li>
-
-            <li className='group hover:text-secondary cursor-pointer'>
-              <Link href='/startpagina/placeholder'>
-                <a className='group-hover:text-secondary'>Spelen</a>
-              </Link>
-            </li>
-
-            <li className='group hover:text-secondary cursor-pointer'>
-              <Link href='/startpagina/placeholder'>
-                <a className='group-hover:text-secondary'>Tempel</a>
-              </Link>
-            </li>
-
-            <li className='group hover:text-secondary cursor-pointer'>
-              <Link href='/startpagina/placeholder'>
-                <a className='group-hover:text-secondary'>Orakel</a>
-              </Link>
-            </li>
-          </ul>
-        </section>
-
+        {children}
         <Link href='/'>
           <a>
             <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>

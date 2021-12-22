@@ -37,3 +37,11 @@ export const placeholderSliderGallery = [
 export const placeholderVideos = [
   'https://digitaleverkenning.pelckmans.be/memoria2-soldaat/wp-content/uploads/sites/61/2020/10/529876_9979_mem2_ict_07_soldaat_film1.mp4?_=1'
 ];
+
+export const placeholderTitle = 'Hedendaagse resten van de pan-Helleense cultuur';
+export const placeholderLinks = [
+  { id: 1, url: '/startpagina/placeholder', text: 'Orakel' },
+  { id: 2, url: '/startpagina/placeholder', text: 'Spelen' },
+  { id: 3, url: '/startpagina/placeholder', text: 'Tempel' },
+  { id: 4, url: '/startpagina/placeholder', text: 'Theater' }
+];
