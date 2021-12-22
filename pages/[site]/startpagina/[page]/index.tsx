@@ -2,7 +2,11 @@ import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import { DefaultLayout } from '@layouts';
 import { Article, ImageArticle, SliderArticle, TextArticle, VideoArticle } from '@components';
-import { placeholderImages, placeholderSliderGallery, placeholderVideos } from '../../assets/data/placeholderData';
+import {
+  placeholderImages,
+  placeholderSliderGallery,
+  placeholderVideos
+} from '../../../../assets/data/placeholderData';
 
 const Default = () => {
   return (

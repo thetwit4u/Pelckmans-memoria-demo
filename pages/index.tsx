@@ -20,7 +20,7 @@ const Home = () => {
           <h2 className='my-6 text-3xl text-white'>{placeholderSiteSettings.type}</h2>
         </section>
         <section className='flex justify-center'>
-          <Link href='/startpagina/default'>
+          <Link href='/site/startpagina/page'>
             <a>
               <Button>{placeholderSiteSettings.title}</Button>
             </a>
