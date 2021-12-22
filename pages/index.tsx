@@ -15,18 +15,16 @@ const Home = () => {
         <meta content='Memoria 2 Site Template - Startpagina' name='description' />
       </Head>
 
-      <section className='flex flex-col row-start-2 justify-center items-center'>
-        <section className='text-center'>
-          <h1 className='my-4 text-4xl text-white'>{placeholder.siteSettings.title}</h1>
-          <h2 className='my-6 text-3xl text-white'>{placeholder.siteSettings.type}</h2>
-        </section>
-        <section className='flex justify-center'>
-          <Link href='/startpagina/page'>
-            <a>
-              <Button>{placeholder.siteSettings.title}</Button>
-            </a>
-          </Link>
-        </section>
+      <section className='text-center'>
+        <h1 className='my-4 text-2xl xl:text-4xl text-white'>{placeholder.siteSettings.title}</h1>
+        <h2 className='my-6 text-xl xl:text-3xl text-white'>{placeholder.siteSettings.type}</h2>
+      </section>
+      <section className='flex justify-center'>
+        <Link href='/startpagina/page'>
+          <a>
+            <Button>{placeholder.siteSettings.title}</Button>
+          </a>
+        </Link>
       </section>
     </>
   );
