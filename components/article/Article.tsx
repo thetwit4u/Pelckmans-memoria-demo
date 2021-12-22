@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import IconFileMedia from '@icons/icon-file-media.svg';
+import IconInfo from '@icons/icon-info.svg';
 import { ArticleProps } from './types';
 
 const Article = ({ caption, children, icon, size = '4/4', title = 'Kijk' }: ArticleProps): JSX.Element => {
@@ -13,9 +14,11 @@ const Article = ({ caption, children, icon, size = '4/4', title = 'Kijk' }: Arti
 
     switch (icon) {
       case 'watch':
-        return <IconFileMedia aria-label='Media file icon' title='Media file icon' {...iconParams} />;
+        return <IconFileMedia aria-label='Media bestand icoon' title='Media bestand icoon' {...iconParams} />;
+      case 'read':
+        return <IconInfo aria-label='Info icoon' title='Info icoon' {...iconParams} />;
       default:
-        return 'some default icon'; // TODO: NEED TO PROVIDE DEFAULT ICON
+        throw new Error(`Icon ${icon} not found. Please use: 'watch' or 'read' `);
     }
   };
 

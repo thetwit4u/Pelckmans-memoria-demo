@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaAngleLeft, FaTimes } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import classNames from 'classnames';
 import Link from 'next/link';
 import Image from 'next/image';
 import { DrawerProps } from './types';
-import Button from '../button/Button';
 
 const Drawer = ({ children, open, onClose }: DrawerProps): JSX.Element => {
   return (
@@ -42,16 +41,7 @@ const Drawer = ({ children, open, onClose }: DrawerProps): JSX.Element => {
         </div>
       </section>
 
-      <section className='my-4 mx-auto w-11/12'>
-        {children}
-        <Link href='/'>
-          <a>
-            <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>
-              Startpagina
-            </Button>
-          </a>
-        </Link>
-      </section>
+      <section className='my-4 mx-auto w-11/12'>{children}</section>
     </section>
   );
 };
