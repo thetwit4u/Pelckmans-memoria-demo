@@ -45,3 +45,8 @@ export const placeholderLinks = [
   { id: 3, url: '/startpagina/placeholder', text: 'Tempel' },
   { id: 4, url: '/startpagina/placeholder', text: 'Theater' }
 ];
+
+export const placeholderSiteSettings = {
+  title: 'Hedendaagse resten van de pan-Helleense cultuur',
+  type: 'Digitale Exploratie'
+};
