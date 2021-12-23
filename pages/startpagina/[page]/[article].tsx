@@ -54,7 +54,7 @@ const ArticlePage = (): JSX.Element => {
         className={classNames({
           'w-full lg:w-8/12': showDrawer,
           'w-full lg:w-full': !showDrawer,
-          'block duration-500 transition-all ': showContent,
+          'block duration-500 transition-all': showContent,
           hidden: !showContent
         })}
         style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>

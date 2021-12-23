@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { FaAngleLeft } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
 import { DefaultLayout } from '@layouts';
 import {
   Article,
@@ -20,12 +21,17 @@ import * as placeholder from '../../../assets/data/placeholderData';
 
 const Page = () => {
   const [showDrawer, setShowDrawer] = React.useState(true);
-
-  const router = useRouter();
-  const { page } = router.query;
-
+  const [showContent, setShowContent] = React.useState(false);
   const drawerElement = React.useRef<HTMLDivElement>(null);
   const [drawerHeight] = useRefHeight(drawerElement);
+  const isLargeScreen = useMediaQuery({ query: '(min-width: 1024px)' });
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (isLargeScreen || drawerHeight > 0) setShowContent(true);
+  }, [drawerHeight, isLargeScreen]);
+
+  const { page } = router.query;
 
   const pageTitle = `${page && typeof page === 'string' && capitalizeString(page)}`;
 
@@ -67,9 +73,11 @@ const Page = () => {
       {!showDrawer && <HamburgerMenu onClick={handleDrawerToggle} />}
 
       <section
-        className={classNames('transition-all duration-500', {
+        className={classNames({
           'w-full lg:w-8/12': showDrawer,
-          'w-full lg:w-full': !showDrawer
+          'w-full lg:w-full': !showDrawer,
+          'block transition-all duration-500': showContent,
+          hidden: !showContent
         })}
         style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
