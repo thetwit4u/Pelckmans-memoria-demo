@@ -80,7 +80,7 @@ const Page = () => {
           hidden: !showContent
         })}
         style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>
-        <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>
+        <section className='grid grid-cols-4 my-16 mx-auto w-full lg:w-10/12'>
           <Article icon='watch'>
             <ImageArticle alt='image' src={placeholder.images[1]} />
           </Article>

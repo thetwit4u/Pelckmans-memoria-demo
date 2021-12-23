@@ -1,6 +1,7 @@
 export { default as Drawer } from './drawer/Drawer';
 export { default as HamburgerMenu } from './hamburgerMenu/HamburgerMenu';
 export { default as Button } from './button/Button';
+export { default as Modal } from './modal/Modal';
 export { default as Article } from './article/Article';
 export { default as ImageArticle } from './article/imageArticle/ImageArticle';
 export { default as SliderArticle } from './article/sliderArticle/SliderArticle';
