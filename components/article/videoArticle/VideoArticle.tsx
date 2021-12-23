@@ -8,14 +8,8 @@ const VideoArticle = ({ src }: VideoArticleProps): JSX.Element => {
   const [playing, setPlaying] = React.useState(false);
 
   const handleOverlayClick = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        setOverlay(false);
-        setPlaying(true);
-      } else {
-        setOverlay(true);
-        setPlaying(false);
-      }
+    if (videoRef.current && videoRef.current.paused) {
+      setPlaying(true);
     }
   };
 
@@ -51,11 +45,7 @@ const VideoArticle = ({ src }: VideoArticleProps): JSX.Element => {
           height='100%'
           src={src}
           width='100%'
-          onClick={handleOverlayClick}
-          onPause={() => {
-            setOverlay(true);
-            setPlaying(false);
-          }}>
+          onPlay={() => setOverlay(false)}>
           Video wordt niet ondersteund
         </video>
       </div>
