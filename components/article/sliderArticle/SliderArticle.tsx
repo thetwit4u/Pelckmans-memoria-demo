@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Navigation, SwiperOptions } from 'swiper';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Modal from '../../modal/Modal';
 import { SliderArticleProps } from './types';
 
@@ -20,6 +21,14 @@ const SwiperParams: SwiperOptions = {
 const SliderArticle = ({ src }: SliderArticleProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);
   const [slideIndex, setSlideIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    if (showModal) {
+      disableBodyScroll(document.body);
+    } else {
+      enableBodyScroll(document.body);
+    }
+  }, [showModal]);
 
   return (
     <section className='p-6'>
