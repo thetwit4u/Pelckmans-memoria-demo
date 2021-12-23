@@ -24,9 +24,12 @@ const ArticlePage = (): JSX.Element => {
 
   const { article, page } = router.query;
 
-  const pageTitle = `${article && typeof article === 'string' && capitalizeString(article)} - ${
-    page && typeof page === 'string' && capitalizeString(page)
-  }`;
+  const pageTitle =
+    page && article
+      ? `${article && typeof article === 'string' && capitalizeString(article)} - ${
+          page && typeof page === 'string' && capitalizeString(page)
+        }`
+      : 'Laden...';
 
   const handleDrawerVisibility = () => setShowDrawer(prevState => !prevState);
 

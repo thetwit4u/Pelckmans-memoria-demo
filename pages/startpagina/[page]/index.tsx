@@ -33,7 +33,7 @@ const Page = () => {
 
   const { page } = router.query;
 
-  const pageTitle = `${page && typeof page === 'string' && capitalizeString(page)}`;
+  const pageTitle = page ? `${page && typeof page === 'string' && capitalizeString(page)}` : 'Laden...';
 
   const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
 
