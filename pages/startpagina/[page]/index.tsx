@@ -81,23 +81,22 @@ const Page = () => {
         })}
         style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>
         <section className='grid grid-cols-4 my-16 mx-auto w-full lg:w-10/12'>
-          <Article icon='watch'>
+          {/* Single Image Article */}
+          <Article icon='watch' title='Single Image Article'>
             <ImageArticle alt='image' src={placeholder.images[1]} />
           </Article>
 
-          <Article icon='watch'>
-            <ImageArticle alt='image' src={placeholder.images[2]} />
-          </Article>
-
-          <Article icon='watch'>
+          {/* Slider Article */}
+          <Article icon='watch' title='Slider Article'>
             <SliderArticle src={placeholder.sliderGallery} />
           </Article>
 
-          <Article icon='watch'>
+          <Article icon='watch' title='Video Article'>
             <VideoArticle src={placeholder.videos[0]} />
           </Article>
 
-          <Article icon='read' title='Lees'>
+          {/* Text Article */}
+          <Article icon='read' title='Text Article'>
             <TextArticle>
               <p>
                 Vloeren, muren en plafonds hadden fresco’s of mozaïeken. Bij een fresco werd de verf aangebracht voordat
@@ -107,6 +106,34 @@ const Page = () => {
                 Pompeii).
               </p>
             </TextArticle>
+          </Article>
+
+          {/* Article - With Caption*/}
+          <Article
+            caption='This is an additional description box you can add to every article.'
+            icon='watch'
+            title='Article - With Caption'>
+            <ImageArticle alt='image' src={placeholder.images[2]} />
+          </Article>
+
+          {/* Article Size 1/4 */}
+          <Article icon='watch' size='1/4' title='Article Size 1/4'>
+            <ImageArticle alt='image' src={placeholder.images[1]} />
+          </Article>
+
+          {/* Article Size 2/4 */}
+          <Article icon='watch' size='2/4' title='Article Size 2/4'>
+            <ImageArticle alt='image' src={placeholder.images[1]} />
+          </Article>
+
+          {/* Article Size 3/4 */}
+          <Article icon='watch' size='3/4' title='Article Size 3/4'>
+            <ImageArticle alt='image' src={placeholder.images[1]} />
+          </Article>
+
+          {/* Article Size 4/4 */}
+          <Article icon='watch' size='4/4' title='Article Size 4/4'>
+            <ImageArticle alt='image' src={placeholder.images[1]} />
           </Article>
         </section>
       </section>

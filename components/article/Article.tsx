@@ -25,10 +25,10 @@ const Article = ({ caption, children, icon, size = '4/4', title = 'Titel' }: Art
   return (
     <article
       className={classNames('bg-white border border-grey-dark m-4', {
-        'col-span-1': size === '1/4',
-        'col-span-2': size === '2/4',
-        'col-span-3': size === '3/4',
-        'col-span-4': size === '4/4'
+        'col-span-4 xl:col-span-1': size === '1/4',
+        'col-span-4 lg:col-span-2': size === '2/4',
+        'col-span-4 lg:col-span-3': size === '3/4',
+        'col-span-4 lg:col-span-4': size === '4/4'
       })}>
       <header className='flex items-center py-5 px-6 text-tertiary bg-grey'>
         {renderIcon()} {title}

@@ -1,7 +1,8 @@
 export const images = [
   'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg',
   'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/529876_9779_mem2_04_080.png',
-  'https://digitaleverkenning.pelckmans.be/memoria2-familia/wp-content/uploads/sites/52/2020/09/529876_9779_mem2_ict_07_familia_008.jpg'
+  'https://digitaleverkenning.pelckmans.be/memoria2-familia/wp-content/uploads/sites/52/2020/09/529876_9779_mem2_ict_07_familia_008.jpg',
+  'https://digitaleverkenning.pelckmans.be/memoria2-athene/wp-content/uploads/sites/51/2020/09/athene.jpg'
 ];
 
 export const sliderGallery = [
