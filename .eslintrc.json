@@ -1,3 +1,26 @@
 {
-  "extends": "next/core-web-vitals"
+  "plugins": ["tailwindcss","@typescript-eslint"],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
+  "rules": {
+
+    // react rules
+    "react/jsx-sort-props": ["error", {
+      "callbacksLast": true,
+      "shorthandFirst": true,
+      "ignoreCase": false,
+      "noSortAlphabetically": false,
+      "reservedFirst": true
+    }],
+    "react/display-name": "off",
+
+    // tailwind rules
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/no-contradicting-classname": "error",
+
+    // typescript rules
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
+  }
 }
+

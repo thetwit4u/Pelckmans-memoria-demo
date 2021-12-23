@@ -1,0 +1,19 @@
+// fix for nextImage component: take up the full width of parent without providing fixed image dimensions
+// READ MORE: https://github.com/vercel/next.js/discussions/18739#discussioncomment-344932
+
+.image {
+  &-container {
+    width: 100%;
+
+    > span {
+      position: unset !important;
+    }
+  }
+
+  &-item {
+    height: unset !important;
+    object-fit: contain;
+    position: relative !important;
+    width: 100% !important;
+  }
+}
