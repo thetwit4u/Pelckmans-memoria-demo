@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { FaAngleLeft } from 'react-icons/fa';
+import { useMediaQuery } from 'react-responsive';
 import { DefaultLayout } from '@layouts';
 import { Article, Button, Drawer, HamburgerMenu, ImageArticle, TextArticle } from '@components';
 import { capitalizeString, useRefHeight } from '@utils';
@@ -11,18 +12,23 @@ import * as placeholder from '../../../assets/data/placeholderData';
 
 const ArticlePage = (): JSX.Element => {
   const [showDrawer, setShowDrawer] = React.useState(true);
-
-  const router = useRouter();
-  const { article, page } = router.query;
-
+  const [showContent, setShowContent] = React.useState(false);
   const drawerElement = React.useRef<HTMLDivElement>(null);
   const [drawerHeight] = useRefHeight(drawerElement);
+  const isLargeScreen = useMediaQuery({ query: '(min-width: 1024px)' });
+  const router = useRouter();
+
+  React.useEffect(() => {
+    if (isLargeScreen || drawerHeight > 0) setShowContent(true);
+  }, [drawerHeight, isLargeScreen]);
+
+  const { article, page } = router.query;
 
   const pageTitle = `${article && typeof article === 'string' && capitalizeString(article)} - ${
     page && typeof page === 'string' && capitalizeString(page)
   }`;
 
-  const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
+  const handleDrawerVisibility = () => setShowDrawer(prevState => !prevState);
 
   return (
     <>
@@ -31,7 +37,7 @@ const ArticlePage = (): JSX.Element => {
         <meta content='Memoria 2 Site Template - Article' name='description' />
       </Head>
 
-      <Drawer ref={drawerElement} open={showDrawer} onClose={handleDrawerToggle}>
+      <Drawer ref={drawerElement} open={showDrawer} onClose={handleDrawerVisibility}>
         <h2 className='mb-6 text-3xl leading-10 text-tertiary capitalize'>{article}</h2>
 
         <Link href='/startpagina/page'>
@@ -42,12 +48,14 @@ const ArticlePage = (): JSX.Element => {
           </a>
         </Link>
       </Drawer>
-      {!showDrawer && <HamburgerMenu onClick={handleDrawerToggle} />}
+      {!showDrawer && <HamburgerMenu onClick={handleDrawerVisibility} />}
 
       <section
-        className={classNames('transition-all duration-500', {
+        className={classNames({
           'w-full lg:w-8/12': showDrawer,
-          'w-full lg:w-full': !showDrawer
+          'w-full lg:w-full': !showDrawer,
+          'block duration-500 transition-all ': showContent,
+          hidden: !showContent
         })}
         style={{ paddingTop: showDrawer ? `${drawerHeight}px` : '2rem' }}>
         <section className='grid grid-cols-4 my-16 mx-auto w-10/12'>

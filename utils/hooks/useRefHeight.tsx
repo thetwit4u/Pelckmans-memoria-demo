@@ -3,30 +3,30 @@ import { useMediaQuery } from 'react-responsive';
 
 const useRefHeight = (ref: React.RefObject<HTMLDivElement>) => {
   const isLargeScreen = useMediaQuery({ query: '(min-width: 1024px)' });
-  const [height, setHeight] = React.useState(0);
+  const [refHeight, setRefHeight] = React.useState(0);
 
   React.useEffect(() => {
     if (isLargeScreen || !ref.current) return;
 
-    setHeight(ref.current.clientHeight);
+    setRefHeight(ref.current.clientHeight);
   }, [isLargeScreen, ref]);
 
   React.useEffect(() => {
-    if (isLargeScreen) return;
-
     const handleResize = () => {
       if (!ref.current) return;
-      setHeight(ref.current.clientHeight);
+      setRefHeight(ref.current.clientHeight);
     };
 
-    window.addEventListener('resize', handleResize);
-
+    if (isLargeScreen) return setRefHeight(0);
+    else {
+      window.addEventListener('resize', handleResize);
+    }
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  });
+  }, [isLargeScreen, ref]);
 
-  return [height];
+  return [refHeight];
 };
 
 export default useRefHeight;
