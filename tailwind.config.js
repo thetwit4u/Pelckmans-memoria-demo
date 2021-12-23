@@ -1,5 +1,5 @@
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './layouts/*.{js,ts,jsx,tsx}'],
   theme: {
     colors: {
       current: 'currentColor',
@@ -15,6 +15,17 @@ module.exports = {
         light: '#81DAA2',
         DEFAULT: '#67c088',
         dark: '#4EA76F'
+      },
+      tertiary: {
+        light: '#006d8b',
+        DEFAULT: '#004d62',
+        dark: '#004558'
+      },
+
+      grey: {
+        light: '#f1f3f5',
+        DEFAULT: '#F0F2F4',
+        dark: '#d4d9df'
       }
     },
     extend: {

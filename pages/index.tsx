@@ -1,33 +1,37 @@
-import type { NextPage } from 'next';
+import React, { ReactElement } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { HomeLayout } from '@layouts';
+import { Button } from '@components';
+import * as placeholder from '../assets/data/placeholderData';
 
-const Home: NextPage = () => {
+const Home = () => {
+  const pageTitle = `Startpagina - ${placeholder.siteSettings.title}`;
+
   return (
-    <div>
+    <>
       <Head>
-        <title>Memoria2 Template</title>
-        <meta content='Memoria2 Template' name='description' />
-        <link href='/favicon.ico' rel='icon' />
+        <title>{pageTitle}</title>
+        <meta content='Memoria 2 Site Template - Startpagina' name='description' />
       </Head>
 
-      <main className='grid grid-rows-homepage-layout mx-auto w-11/12 min-h-screen'>
-        <section className='flex flex-col row-start-2 justify-center items-center'>
-          <section className='text-center'>
-            <h1 className='my-4 text-4xl text-white'>Hedendaagse resten van de pan-Helleense cultuur</h1>
-            <h2 className='my-6 text-3xl text-white'>Digitale Exploratie</h2>
-          </section>
-          <section className='flex justify-center'>
-            <Link href='/placeholder-path'>
-              <a className='py-4 px-4 text-base tracking-wider text-white uppercase bg-secondary hover:bg-secondary-dark border-0 shadow-button-homepage hover:shadow-button-homepage-hover transition-all hover:translate-y-px cursor-pointer rounded-[3px]'>
-                Hedendaagse resten van de pan-Helleense cultuur
-              </a>
-            </Link>
-          </section>
-        </section>
-      </main>
-    </div>
+      <section className='text-center'>
+        <h1 className='my-4 text-2xl xl:text-4xl text-white'>{placeholder.siteSettings.title}</h1>
+        <h2 className='my-6 text-xl xl:text-3xl text-white'>{placeholder.siteSettings.type}</h2>
+      </section>
+      <section className='flex justify-center'>
+        <Link href='/startpagina/page'>
+          <a>
+            <Button>{placeholder.siteSettings.title}</Button>
+          </a>
+        </Link>
+      </section>
+    </>
   );
 };
 
 export default Home;
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <HomeLayout>{page}</HomeLayout>;
+};

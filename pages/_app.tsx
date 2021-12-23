@@ -1,8 +1,23 @@
+import 'swiper/scss';
+import 'swiper/css/effect-fade';
 import '../styles/globals.scss';
-import type { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+import type { AppProps } from 'next/app';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? (page => page);
+
+  return getLayout(<Component {...pageProps} />);
 }
 
 export default MyApp;
