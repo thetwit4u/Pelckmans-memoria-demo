@@ -2,6 +2,13 @@
 module.exports = {
   reactStrictMode: true,
   webpack(config) {
+    config.resolve.fallback = { fs: false, path: false };
+
+    config.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader'
+    });
+
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
@@ -11,6 +18,8 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['digitaleverkenning.pelckmans.be']
+    domains: ['digitaleverkenning.pelckmans.be'],
+    loader: 'imgix',
+    path: ''
   }
 };
