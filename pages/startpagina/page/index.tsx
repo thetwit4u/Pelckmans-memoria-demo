@@ -95,11 +95,11 @@ export default Page;
 
 export async function getStaticProps() {
   const homeCollection = new CollectionService('home', 'file');
+  const pagesCollection = new CollectionService('pages', 'folder');
+
   const {
     meta: { articles }
   } = homeCollection.getItem('home');
-
-  const pagesCollection = new CollectionService('pages');
   const pages = pagesCollection.getAllItems();
 
   return {
