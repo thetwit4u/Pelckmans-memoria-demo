@@ -5,6 +5,7 @@ import SliderArticle from './sliderArticle/SliderArticle';
 import ReactMarkdown from 'react-markdown';
 import { IArticle, IImage } from 'utils/service/types';
 import TextArticle from './textArticle/TextArticle';
+import { ArticleProps } from './types';
 
 type ArticleFactoryProps = {
   articles: IArticle[];
@@ -33,6 +34,17 @@ function ImageOrSliderArticle({ images }: ArticleImagesProps): JSX.Element | nul
   }
 }
 
+function articleSize(articlesLength: number): ArticleProps['size'] {
+  let columnSize = 2;
+  if (articlesLength === 1) {
+    columnSize = 4;
+  }
+  if (articlesLength >= 4) {
+    columnSize = 1;
+  }
+  return `${columnSize}/4` as ArticleProps['size'];
+}
+
 export default function ArticleFactory({ articles }: ArticleFactoryProps) {
   return (
     <>
@@ -43,7 +55,12 @@ export default function ArticleFactory({ articles }: ArticleFactoryProps) {
         const caption = hasImages && hasBody ? <ReactMarkdown>{article.body}</ReactMarkdown> : null;
 
         return (
-          <Article key={idx} caption={caption} icon={articleIcon} title={article.title}>
+          <Article
+            key={idx}
+            caption={caption}
+            icon={articleIcon}
+            size={articleSize(articles.length)}
+            title={article.title}>
             {hasImages && <ImageOrSliderArticle images={articleToSliderAdapter(article.images)} />}
 
             {!hasImages && (

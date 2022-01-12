@@ -42,6 +42,7 @@ const Page = ({ pages, articles, title }: PageProps) => {
 
         <section className='my-6'>
           <p>Maak je keuze:</p>
+          {pages.length === 0 && <span>Voeg pagina&apos;s toe in de CMS om deze hier te zien.</span>}
           <ul className='inline-block py-4 pl-10 leading-8 list-disc list-inside text-tertiary'>
             {pages.map((page, index) => {
               return (
