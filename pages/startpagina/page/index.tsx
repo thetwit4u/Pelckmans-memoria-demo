@@ -101,7 +101,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      title,
+      title: title ?? '-- titel --',
       pages: pages ?? [],
       articles: articles ?? []
     }

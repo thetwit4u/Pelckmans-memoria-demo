@@ -6,10 +6,10 @@ import { Button } from '@components';
 import CollectionService from '../utils/service/collectionService';
 
 type IProps = {
-  meta: { title: string };
+  title: string;
 };
 const Home = (props: IProps) => {
-  const { title } = props.meta;
+  const { title } = props;
   const pageTitle = `Startpagina - ${title}`;
 
   return (
@@ -21,7 +21,7 @@ const Home = (props: IProps) => {
 
       <section className='text-center'>
         <h1 className='my-4 text-2xl xl:text-4xl text-white'>{title}</h1>
-        <h2 className='my-6 text-xl xl:text-3xl text-white'>Digitiale Exploratie</h2>
+        <h2 className='my-6 text-xl xl:text-3xl text-white'>Digitale Exploratie</h2>
       </section>
       <section className='flex justify-center'>
         <Link href='/startpagina/page'>
@@ -48,7 +48,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      meta: { title }
+      title: title ?? '-- titel -- '
     }
   };
 }
