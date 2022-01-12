@@ -7,17 +7,17 @@ import { useMediaQuery } from 'react-responsive';
 import { DefaultLayout } from '@layouts';
 import { Button, Drawer, HamburgerMenu } from '@components';
 import { useRefHeight } from '@utils';
-import * as placeholder from '../../../assets/data/placeholderData';
 import CollectionService from 'utils/service/collectionService';
 import { IArticle } from 'utils/service/types';
 import ArticleFactory from 'components/article/ArticleFactory';
 
 type ArticlePageProps = {
   title: string;
+  homeTitle: string;
   articles: IArticle[];
 };
 
-const ArticlePage = ({ title, articles }: ArticlePageProps): JSX.Element => {
+const ArticlePage = ({ title, articles, homeTitle }: ArticlePageProps): JSX.Element => {
   const [showDrawer, setShowDrawer] = React.useState(true);
   const [showContent, setShowContent] = React.useState(false);
   const drawerElement = React.useRef<HTMLDivElement>(null);
@@ -43,7 +43,7 @@ const ArticlePage = ({ title, articles }: ArticlePageProps): JSX.Element => {
         <Link href='/startpagina/page'>
           <a>
             <Button startIcon={<FaAngleLeft />} verticalSpacing='small'>
-              {placeholder.siteSettings.title}
+              {homeTitle}
             </Button>
           </a>
         </Link>
@@ -73,6 +73,11 @@ ArticlePage.getLayout = function getLayout(page: ReactElement) {
 export default ArticlePage;
 
 export async function getStaticProps({ params }: { params: { article: string } }) {
+  const homeCollection = new CollectionService('home', 'file');
+  const {
+    meta: { title: homeTitle }
+  } = homeCollection.getItem('home_general');
+
   const pagesCollection = new CollectionService('pages');
   const {
     meta: { title, articles }
@@ -80,6 +85,7 @@ export async function getStaticProps({ params }: { params: { article: string } }
 
   return {
     props: {
+      homeTitle,
       title,
       articles
     }
