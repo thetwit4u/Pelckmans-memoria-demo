@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
 import classNames from 'classnames';
 import { DrawerProps } from './types';
-import CollectionService from 'utils/service/collectionService';
+import { imageLoader } from '@utils';
 
 const Drawer = React.forwardRef<HTMLDivElement | null, DrawerProps>(({ children, open, onClose }, ref): JSX.Element => {
   return (
@@ -24,9 +24,9 @@ const Drawer = React.forwardRef<HTMLDivElement | null, DrawerProps>(({ children,
                   alt='Memoria 2 logo'
                   height='111px'
                   loader={() =>
-                    CollectionService.getImagePath({
-                      src: 'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
-                    })
+                    imageLoader(
+                      'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
+                    )
                   }
                   src='https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
                   width='558px'
