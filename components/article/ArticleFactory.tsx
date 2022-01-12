@@ -9,58 +9,48 @@ import TextArticle from './textArticle/TextArticle';
 type ArticleFactoryProps = {
   articles: IArticle[];
 };
-type ArticleLayoutProps = {
-  article: IArticle;
+type ArticleImagesProps = {
+  images: SliderArticleImages;
 };
 type SliderArticleImages = { caption: string; src: string; id: number; alt: string }[];
-type ArticleType = 'read' | 'watch';
+
+function articleToSliderAdapter(images: IImage[], altPrefix?: string): SliderArticleImages {
+  return images.map((image, idx) => ({
+    caption: image.description,
+    src: `/${image.image}`,
+    id: idx,
+    alt: `${altPrefix ?? 'article-image-'}${idx}`
+  }));
+}
+
+function ImageOrSliderArticle({ images }: ArticleImagesProps): JSX.Element | null {
+  if (!images) return null;
+
+  if (images.length > 1) {
+    return <SliderArticle src={images} />;
+  } else {
+    return <ImageArticle alt={images[0].alt} src={images[0].src} />;
+  }
+}
 
 export default function ArticleFactory({ articles }: ArticleFactoryProps) {
-  let articleType: ArticleType = 'read';
-
-  function ArticleLayout({ article }: ArticleLayoutProps): JSX.Element {
-    const hasImage = article.hasOwnProperty('images') && article.images.length > 0;
-    const imagesLength = hasImage ? article.images.length : 0;
-
-    const sliderImageAdapter = (images: IImage[]): SliderArticleImages => {
-      return images.map((image, idx) => ({
-        caption: image.description,
-        src: image.image,
-        id: idx,
-        alt: `${article.title}-image-${idx}`
-      }));
-    };
-
-    // Slider / images Article
-    if (hasImage) {
-      const images = sliderImageAdapter(article.images);
-      articleType = 'watch';
-
-      if (imagesLength > 1) {
-        return <SliderArticle src={images} />;
-      } else {
-        return <ImageArticle alt={images[0].alt} src={images[0].src} />;
-      }
-    }
-
-    // Read Article
-    return (
-      <TextArticle>
-        <ReactMarkdown>{article.body}</ReactMarkdown>
-      </TextArticle>
-    );
-  }
-
   return (
     <>
       {articles.map((article, idx: number) => {
+        const hasImages = article.hasOwnProperty('images') && article.images.length > 0;
+        const articleIcon = hasImages ? 'watch' : 'read';
+        const hasBody = article.body ?? null;
+        const caption = hasImages && hasBody ? <ReactMarkdown>{article.body}</ReactMarkdown> : null;
+
         return (
-          <Article
-            key={idx}
-            caption={<ReactMarkdown>{article.body}</ReactMarkdown>}
-            icon={articleType}
-            title={article.title}>
-            <ArticleLayout article={article} />
+          <Article key={idx} caption={caption} icon={articleIcon} title={article.title}>
+            {hasImages && <ImageOrSliderArticle images={articleToSliderAdapter(article.images)} />}
+
+            {!hasImages && (
+              <TextArticle>
+                <ReactMarkdown>{article.body}</ReactMarkdown>
+              </TextArticle>
+            )}
           </Article>
         );
       })}

@@ -1,14 +1,12 @@
 import React, { ReactElement, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import classNames from 'classnames';
 import { FaAngleLeft } from 'react-icons/fa';
 import { useMediaQuery } from 'react-responsive';
 import { DefaultLayout } from '@layouts';
 import { Button, Drawer, HamburgerMenu } from '@components';
-import { capitalizeString, useRefHeight } from '@utils';
-import * as placeholder from '../../../assets/data/placeholderData';
+import { useRefHeight } from '@utils';
 import CollectionService from 'utils/service/collectionService';
 import ArticleFactory from 'components/article/ArticleFactory';
 import { IArticle, ICollection } from 'utils/service/types';
@@ -16,35 +14,31 @@ import { IArticle, ICollection } from 'utils/service/types';
 type PageProps = {
   pages: ICollection[];
   articles: IArticle[];
+  title: string;
 };
 
-const Page = ({ pages, articles }: PageProps) => {
+const Page = ({ pages, articles, title }: PageProps) => {
   const [showDrawer, setShowDrawer] = React.useState(true);
   const [showContent, setShowContent] = React.useState(false);
   const drawerElement = React.useRef<HTMLDivElement>(null);
   const [drawerHeight] = useRefHeight(drawerElement);
   const isLargeScreen = useMediaQuery({ query: '(min-width: 1024px)' });
-  const router = useRouter();
 
   useEffect(() => {
     if (isLargeScreen || drawerHeight > 0) setShowContent(true);
   }, [drawerHeight, isLargeScreen]);
-
-  const { page } = router.query;
-
-  const pageTitle = page ? `${page && typeof page === 'string' && capitalizeString(page)}` : 'Laden...';
 
   const handleDrawerToggle = () => setShowDrawer(prevState => !prevState);
 
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{title}</title>
         <meta content='Memoria 2 Site Template - Page' name='description' />
       </Head>
 
       <Drawer ref={drawerElement} open={showDrawer} onClose={handleDrawerToggle}>
-        <h2 className='text-3xl leading-10 text-tertiary'>{placeholder.siteSettings.title}</h2>
+        <h2 className='text-3xl leading-10 text-tertiary'>{title}</h2>
 
         <section className='my-6'>
           <p>Maak je keuze:</p>
@@ -99,13 +93,17 @@ export async function getStaticProps() {
 
   const {
     meta: { articles }
-  } = homeCollection.getItem('home');
+  } = homeCollection.getItem('home_articles');
+  const {
+    meta: { title }
+  } = homeCollection.getItem('home_general');
   const pages = pagesCollection.getAllItems();
 
   return {
     props: {
-      pages,
-      articles
+      title,
+      pages: pages ?? [],
+      articles: articles ?? []
     }
   };
 }

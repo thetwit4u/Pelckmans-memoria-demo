@@ -4,13 +4,12 @@ import Link from 'next/link';
 import { HomeLayout } from '@layouts';
 import { Button } from '@components';
 import CollectionService from '../utils/service/collectionService';
-import ReactMarkdown from 'react-markdown';
 
 type IProps = {
-  meta: { title: string; intro: string; button: string };
+  meta: { title: string };
 };
 const Home = (props: IProps) => {
-  const { title, intro, button } = props.meta;
+  const { title } = props.meta;
   const pageTitle = `Startpagina - ${title}`;
 
   return (
@@ -22,14 +21,12 @@ const Home = (props: IProps) => {
 
       <section className='text-center'>
         <h1 className='my-4 text-2xl xl:text-4xl text-white'>{title}</h1>
-        <p className='my-6 text-xl xl:text-3xl text-white'>
-          <ReactMarkdown>{intro}</ReactMarkdown>
-        </p>
+        <h2 className='my-6 text-xl xl:text-3xl text-white'>Digitiale Exploratie</h2>
       </section>
       <section className='flex justify-center'>
         <Link href='/startpagina/page'>
           <a>
-            <Button>{button}</Button>
+            <Button>{title}</Button>
           </a>
         </Link>
       </section>
@@ -45,11 +42,13 @@ Home.getLayout = function getLayout(page: ReactElement) {
 
 export async function getStaticProps() {
   const homeCollection = new CollectionService('home', 'file');
-  const { meta } = homeCollection.getItem('home');
+  const {
+    meta: { title }
+  } = homeCollection.getItem('home_general');
 
   return {
     props: {
-      meta
+      meta: { title }
     }
   };
 }
