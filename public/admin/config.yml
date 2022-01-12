@@ -10,103 +10,49 @@ collections:
   - label: Homepage
     name: homepage
     files:
-      - label: Structuur
-        name: homepage_structure
-        file: "cms/collections/home.md"
+      - label: Algemeen
+        name: homepage_general
+        file: cms/collections/home_general.md
         fields:
-          - { label: Titel, name: title, widget: string }
-          - { label: Intro, name: intro, widget: markdown }
           - {
-              label: Knop,
-              name: button,
+              label: Titel,
+              name: title,
               widget: string,
-              hint: Hier kan je de tekst van de knop aanpassen,
+              default: Dit is de titel,
             }
+      - label: Artikels
+        name: homepage_articles
+        file: cms/collections/home_articles.md
+        fields:
           - label: Artikels
             name: articles
             widget: list
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Body", name: "body", widget: "markdown" }
+              - { label: Titel, name: title, widget: string }
+              - { label: Content, name: body, widget: markdown }
               - label: Afbeeldingen
                 name: images
                 widget: list
                 fields:
-                  - { label: "Afbeelding", name: "image", widget: "image" }
-                  - {
-                      label: "Onderwerp",
-                      name: "description",
-                      widget: "markdown",
-                    }
+                  - { label: Afbeelding, name: image, widget: image }
+                  - { label: Onderwerp, name: description, widget: markdown }
 
-  - label: "Pagina's"
-    label_singular: "Pagina"
-    name: "pages"
-    folder: "cms/collections/pages"
+  - label: Pagina's
+    label_singular: Pagina
+    name: pages
+    folder: cms/collections/pages
     create: true
     fields:
-      - { label: "Title", name: "title", widget: "string" }
+      - { label: Titel, name: title, widget: string }
       - label: Artikels
         name: articles
         widget: list
         fields:
-          - { label: "Title", name: "title", widget: "string" }
-          - { label: "Body", name: "body", widget: "markdown" }
+          - { label: Titel, name: title, widget: string }
+          - { label: Content, name: body, widget: markdown }
           - label: Afbeeldingen
             name: images
             widget: list
             fields:
-              - { label: "Afbeelding", name: "image", widget: "image" }
-              - { label: "Onderwerp", name: "description", widget: "markdown" }
-
-    #  - label: "Lees Artikels"
-    #    label_singular: "Lees Artikel"
-    #    name: "lees_artikels"
-    #    folder: "cms/collections/articles"
-    #    identifier_field: name
-    #    create: true
-    #    filter: { field: "type", value: "Lees" }
-    #    fields:
-    #      - { label: "Type", name: "type", widget: "hidden" }
-    #      - { label: "Title", name: "title", widget: "string" }
-    #      - { label: "Publish Date", name: "date", widget: "datetime" }
-    #      - { label: "Body", name: "body", widget: "markdown" }
-
-    #  - label: "Kijk Artikels"
-    #    label_singular: "Kijk Artikel"
-    #    name: "kijk_artikels"
-    #    folder: "cms/collections/articles"
-    #    identifier_field: name
-    #    create: true
-    #    filter: { field: "type", value: "Kijk" }
-    #    fields:
-    #      - { label: "Type", name: "type", widget: "hidden" }
-    #      - { label: "Title", name: "title", widget: "string" }
-    #      - { label: "Publish Date", name: "date", widget: "datetime" }
-    #      - label: "Images"
-    #        allow_multiple: true
-    #        name: "images"
-    #        widget: "image"
-    #        choose_url: true
-    #        media_library:
-    #          config:
-    #            multiple: true
-    #      - { label: "Body", name: "body", widget: "markdown" }
-
-    # - name: "home"
-    #   identifier_field: title
-    #   label: "Home"
-    #   label_singular: "Home"
-    #   folder: "cms/collections/home"
-    #   create: true
-    #   fields:
-    #     - { label: "Layout", name: "layout", widget: "hidden", default: "blog" }
-    #     - { label: "Title", name: "title", widget: "string" }
-    #     - { label: "Publish Date", name: "date", widget: "datetime" }
-    #     - {
-    #         label: "Featured Image",
-    #         name: "thumbnail",
-    #         widget: "image",
-    #         required: false,
-    #       }
-    #     - { label: "Body", name: "body", widget: "markdown" }
+              - { label: Afbeelding, name: image, widget: image }
+              - { label: Onderwerp, name: description, widget: markdown }
