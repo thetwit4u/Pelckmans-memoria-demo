@@ -41,7 +41,8 @@ collections:
                 fields:
                   - { label: Afbeelding, name: image, widget: image }
                   - {
-                      label: Onderwerp,
+                      label: Legende,
+                      hint: Enkel getoond bij meerdere afbeeldingen,
                       name: description,
                       widget: markdown,
                       required: false,

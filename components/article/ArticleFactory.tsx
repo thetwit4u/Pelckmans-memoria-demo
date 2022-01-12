@@ -18,7 +18,7 @@ type SliderArticleImages = { caption: string; src: string; id: number; alt: stri
 function articleToSliderAdapter(images: IImage[], altPrefix?: string): SliderArticleImages {
   return images.map((image, idx) => ({
     caption: image.description,
-    src: `/${image.image}`,
+    src: image.image,
     id: idx,
     alt: `${altPrefix ?? 'article-image-'}${idx}`
   }));

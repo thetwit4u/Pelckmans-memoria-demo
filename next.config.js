@@ -19,7 +19,6 @@ module.exports = {
   },
   images: {
     domains: ['digitaleverkenning.pelckmans.be'],
-    loader: 'imgix',
-    path: ''
+    loader: 'custom'
   }
 };
