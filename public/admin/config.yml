@@ -18,7 +18,7 @@ collections:
               label: Titel,
               name: title,
               widget: string,
-              default: Hedendaagse resten van de pan-Helleense cultuur,
+              default: Titel Memoria Website,
             }
       - label: Artikels
         name: homepage_articles
@@ -29,12 +29,13 @@ collections:
             widget: list
             fields:
               - { label: Titel, name: title, widget: string }
-              - {
-                  label: Content,
-                  name: body,
-                  widget: markdown,
-                  required: false,
-                }
+              - { label: Tekst, name: body, widget: markdown, required: false }
+              - label: "Icoon type"
+                name: "icon_type"
+                widget: "select"
+                options:
+                  - { label: "Kijk", value: "watch" }
+                  - { label: "Lees", value: "read" }
               - label: Afbeeldingen
                 name: images
                 widget: list
@@ -45,7 +46,7 @@ collections:
                       hint: Enkel getoond bij meerdere afbeeldingen,
                       name: description,
                       widget: markdown,
-                      required: false,
+                      required: false
                     }
 
   - label: Pagina's
@@ -60,15 +61,22 @@ collections:
         widget: list
         fields:
           - { label: Titel, name: title, widget: string }
-          - { label: Content, name: body, widget: markdown, required: false }
+          - { label: Tekst, name: body, widget: markdown, required: false }
+          - label: "Icoon type"
+            name: "icon_type"
+            widget: "select"
+            options:
+              - { label: "Kijk", value: "watch" }
+              - { label: "Lees", value: "read" }
           - label: Afbeeldingen
             name: images
             widget: list
             fields:
               - { label: Afbeelding, name: image, widget: image }
               - {
-                  label: Onderwerp,
-                  name: description,
-                  widget: markdown,
-                  required: false,
-                }
+                label: Legende,
+                hint: Enkel getoond bij meerdere afbeeldingen,
+                name: description,
+                widget: markdown,
+                required: false
+              }

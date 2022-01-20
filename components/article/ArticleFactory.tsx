@@ -3,7 +3,7 @@ import Article from './Article';
 import ImageArticle from './imageArticle/ImageArticle';
 import SliderArticle from './sliderArticle/SliderArticle';
 import ReactMarkdown from 'react-markdown';
-import { IArticle, IImage } from 'utils/service/types';
+import { IArticle, IIconType, IImage } from 'utils/service/types';
 import TextArticle from './textArticle/TextArticle';
 import { ArticleProps } from './types';
 
@@ -50,7 +50,13 @@ export default function ArticleFactory({ articles }: ArticleFactoryProps) {
     <>
       {articles.map((article, idx: number) => {
         const hasImages = article.hasOwnProperty('images') && article.images.length > 0;
-        const articleIcon = hasImages ? 'watch' : 'read';
+        let articleIcon: IIconType;
+        if (article.icon_type) {
+          articleIcon = article.icon_type;
+        } else {
+          articleIcon = hasImages ? 'watch' : 'read';
+        }
+
         const hasBody = article.body ?? null;
         const caption = hasImages && hasBody ? <ReactMarkdown>{article.body}</ReactMarkdown> : null;
 

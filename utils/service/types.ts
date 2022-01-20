@@ -11,7 +11,9 @@ export type IArticle = {
   title: string;
   body: string;
   images: IImage[];
+  icon_type: IIconType;
 };
+export type IIconType = 'read' | 'watch';
 export type IMeta = {
   [key: string]: string | null | boolean | IArticle[];
 };

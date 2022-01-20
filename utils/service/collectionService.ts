@@ -56,7 +56,6 @@ class CollectionService {
     };
   }
   static getImagePath({ src }: { src: string }) {
-    // TODO: add minification
     return src;
   }
   static getRootCollectionPath() {
