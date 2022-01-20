@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-import { exec } from 'child_process';
-import dotenv from 'dotenv';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { exec } = require('child_process');
+const dotenv = require('dotenv');
 dotenv.config();
 
 function deploy() {
