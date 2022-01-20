@@ -6,6 +6,7 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import Modal from '../../modal/Modal';
 import { SliderArticleProps } from './types';
+import { imageLoader } from '@utils';
 
 const SwiperParams: SwiperOptions = {
   loop: true,
@@ -36,7 +37,14 @@ const SliderArticle = ({ src }: SliderArticleProps): JSX.Element => {
         {src.map(image => {
           return (
             <SwiperSlide key={image.id} className='relative image-container'>
-              <Image alt={image.alt} className='image-item' layout='fill' src={image.src} />
+              <Image
+                unoptimized
+                alt={image.alt}
+                className='image-item'
+                layout='fill'
+                loader={() => imageLoader(image.src)}
+                src={image.src}
+              />
 
               {image.caption && (
                 <>

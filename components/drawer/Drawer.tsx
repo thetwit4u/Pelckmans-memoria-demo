@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { FaTimes } from 'react-icons/fa';
 import classNames from 'classnames';
 import { DrawerProps } from './types';
+import { imageLoader } from '@utils';
 
 const Drawer = React.forwardRef<HTMLDivElement | null, DrawerProps>(({ children, open, onClose }, ref): JSX.Element => {
   return (
@@ -19,8 +20,14 @@ const Drawer = React.forwardRef<HTMLDivElement | null, DrawerProps>(({ children,
             <a>
               <h1 className='max-w-[250px]'>
                 <Image
+                  unoptimized
                   alt='Memoria 2 logo'
                   height='111px'
+                  loader={() =>
+                    imageLoader(
+                      'https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
+                    )
+                  }
                   src='https://digitaleverkenning.pelckmans.be/memoria2-panhelleensecultuur/wp-content/uploads/sites/50/2020/09/memoria.png'
                   width='558px'
                 />

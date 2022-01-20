@@ -1,0 +1,82 @@
+backend:
+  name: git-gateway
+local_backend: true
+media_folder: public/cms-images
+public_folder: /cms-images
+publish_mode: editorial_workflow
+display_url: http://localhost:3000
+
+collections:
+  - label: Homepage
+    name: homepage
+    files:
+      - label: Algemeen
+        name: homepage_general
+        file: cms/collections/home_general.md
+        fields:
+          - {
+              label: Titel,
+              name: title,
+              widget: string,
+              default: Titel Memoria Website,
+            }
+      - label: Artikels
+        name: homepage_articles
+        file: cms/collections/home_articles.md
+        fields:
+          - label: Artikels
+            name: articles
+            widget: list
+            fields:
+              - { label: Titel, name: title, widget: string }
+              - { label: Tekst, name: body, widget: markdown, required: false }
+              - label: "Icoon type"
+                name: "icon_type"
+                widget: "select"
+                options:
+                  - { label: "Kijk", value: "watch" }
+                  - { label: "Lees", value: "read" }
+              - label: Afbeeldingen
+                name: images
+                widget: list
+                fields:
+                  - { label: Afbeelding, name: image, widget: image }
+                  - {
+                      label: Legende,
+                      hint: Enkel getoond bij meerdere afbeeldingen,
+                      name: description,
+                      widget: markdown,
+                      required: false
+                    }
+
+  - label: Pagina's
+    label_singular: Pagina
+    name: pages
+    folder: cms/collections/pages
+    create: true
+    fields:
+      - { label: Titel, name: title, widget: string }
+      - label: Artikels
+        name: articles
+        widget: list
+        fields:
+          - { label: Titel, name: title, widget: string }
+          - { label: Tekst, name: body, widget: markdown, required: false }
+          - label: "Icoon type"
+            name: "icon_type"
+            widget: "select"
+            options:
+              - { label: "Kijk", value: "watch" }
+              - { label: "Lees", value: "read" }
+          - label: Afbeeldingen
+            name: images
+            widget: list
+            fields:
+              - { label: Afbeelding, name: image, widget: image }
+              - {
+                label: Legende,
+                hint: Enkel getoond bij meerdere afbeeldingen,
+                name: description,
+                widget: markdown,
+                required: false
+              }

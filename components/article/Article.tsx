@@ -36,7 +36,7 @@ const Article = ({ caption, children, icon, size = '4/4', title = 'Titel' }: Art
       {children}
       {caption && (
         <section className='p-3 my-6 mx-6 border border-grey-dark'>
-          <p className='text-tertiary'>{caption}</p>
+          <span className='text-tertiary'>{caption}</span>
         </section>
       )}
     </article>
