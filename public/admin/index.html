@@ -6,7 +6,19 @@
   <title>Content Manager</title>
 </head>
 <body>
-<!-- Include the script that builds the page and powers Netlify CMS -->
 <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+
+<script type="module">
+import {Control as CategoryControl, Preview as CategoryPreview, Schema as CategorySchema} from
+   "./admin-components/CategoriesComponent.js";
+import {Control as InteractiveImageControl, Preview as InteractiveImagePreview} from
+   "./admin-components/InteractiveImageComponent.js";
+
+CMS.registerWidget('categories', CategoryControl, CategoryPreview, CategorySchema);
+
+CMS.registerWidget('interactive-image', InteractiveImageControl, InteractiveImagePreview);
+
+
+</script>
 </body>
 </html>
