@@ -73,15 +73,14 @@ collections:
             name: images
             widget: list
             fields:
-              - { label: Afbeelding, name: image, widget: image }
-              - label: Interacties
-                name: image-interactions
-                widget: list
-                hint: Hier kan je punten op de afbeelding toevoegen
-                fields:
-                  - name: interactiveImage
-                    label: Interactive Image
-                    widget: interactive-image
+              - { label: Gewone Afbeelding, name: image, widget: image }
+              - { name: interactiveImage, label: Interactive Afbeelding, widget: interactive-image }
+#              - label: Interacties
+#                name: image-interactions
+#                widget: list
+#                hint: Hier kan je punten op de afbeelding toevoegen
+#                fields:
+
               - {
                 label: Legende,
                 hint: Enkel getoond bij meerdere afbeeldingen,
