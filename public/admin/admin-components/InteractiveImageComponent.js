@@ -3,30 +3,7 @@ const Control = createClass({
   imageUploaded: false,
   imageUrl: '',
   pointsLength: 0,
-  blobToImage: blob => {
-    return new Promise(resolve => {
-      const url = URL.createObjectURL(blob);
-      let img = new Image();
-      img.onload = () => {
-        URL.revokeObjectURL(url);
-        resolve(img);
-      };
-      img.src = url;
-    });
-  },
-  mergeInputValues(e, prefix, key, self) {
-    self.valueCache.set(prefix, { ...self.valueCache.get(prefix), ...{ [key]: e.target.value } });
-    self.props.onChange(self.valueCache);
-  },
-  addPoint() {
-    this.pointsLength++;
-    this.forceUpdate();
-  },
-  removePoint() {
-    this.pointsLength--;
-    this.forceUpdate();
-  },
-  imageInputHandler(evt) {
+  handleImageInput(evt) {
     const [file] = evt.target.files;
     if (file) {
       this.imageUrl = URL.createObjectURL(file);
@@ -36,40 +13,85 @@ const Control = createClass({
     }
     this.forceUpdate();
   },
-  removeSelectedImage() {
-    console.log('remove selected');
+  handleRemoveImage() {
     this.imageUrl = '';
     this.imageUploaded = false;
     this.forceUpdate();
   },
+  handleImageClick(e) {
+    if (!e) return;
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const key = `point-${this.valueCache.size}`;
+
+    // save state
+    this.valueCache.set(key, { ...this.valueCache.get(key), x, y });
+    // update cms value
+    this.props.onChange({
+      image: this.imageUrl,
+      points: this.valueCache
+    });
+  },
   renderImage() {
     const args = {
-      src: this.imageUrl
+      img: {
+        src: this.imageUrl,
+        onClick: this.handleImageClick
+      },
+      button: {
+        onClick: this.handleRemoveImage
+      }
     };
-    return h('div', {}, [
-      h('img', args),
-      h('div', {}, [
-        h('span', {}, `Selected image: ${this.imageUrl}`),
-        h(
-          'button',
+    const points = () => {
+      const pointsArray = Array.from(this.valueCache.entries());
+
+      return pointsArray.map(point => {
+        const key = point[0];
+        const value = point[1];
+        const styleObject = {};
+        const style = {
+          ...this.setPointStyles(styleObject),
+          ...this.setPointPosition(styleObject, value)
+        };
+
+        return h(
+          'span',
           {
-            onClick: () => {
-              this.removeSelectedImage();
-            }
+            'data-key': key,
+            style
           },
-          `Remove image`
-        )
-      ])
+          ''
+        );
+      });
+    };
+    return h('div', { className: 'iimg-image-wrapper' }, [
+      h('div', null, [h('img', args.img), h('div', {}, points())]),
+      h('button', args.button, `Remove image`)
     ]);
   },
   renderFileInput() {
     const args = {
       type: 'file',
-      id: 'file-input--interactiveComponent',
       accept: 'image/png, image/jpeg, image/png, image/jpg',
-      onInput: e => this.imageInputHandler(e)
+      onInput: this.handleImageInput
     };
     return h('input', args);
+  },
+  setPointStyles(styleObject) {
+    styleObject.position = 'absolute';
+    styleObject.width = '30px';
+    styleObject.height = '30px';
+    styleObject.display = 'block';
+    styleObject.background = '#fff';
+    styleObject.borderRadius = '50%';
+    styleObject.transform = 'translate(-50%, -50%)';
+    return styleObject;
+  },
+  setPointPosition(styleObject, { x, y }) {
+    styleObject.left = `${x}px`;
+    styleObject.top = `${y}px`;
+    return styleObject;
   },
   render: function () {
     return h('div', null, [this.imageUploaded ? this.renderImage() : this.renderFileInput()]);
@@ -93,18 +115,7 @@ const Preview = createClass({
     this.addPointsToPreview();
     this.mounted = true;
   },
-  setPointStyles(point) {
-    point.style.position = 'absolute';
-    point.style.width = '30px';
-    point.style.height = '30px';
-    point.style.display = 'block';
-    point.style.background = '#fff';
-    point.style.borderRadius = '50%';
-  },
-  setPointPosition(point, { x, y }) {
-    point.style.left = `${x}px`;
-    point.style.top = `${y}px`;
-  },
+
   setElement() {
     const previewPane = document.querySelector('#preview-pane');
     this.imgPreview.element = previewPane.contentWindow.document.querySelector('img');

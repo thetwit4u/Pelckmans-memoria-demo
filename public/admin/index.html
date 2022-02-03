@@ -1,8 +1,10 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"/>
   <title>Content Manager</title>
 </head>
 <body>
@@ -10,21 +12,27 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.0.0/immutable.min.js"></script>
 <script type="module">
-import {Control as CategoryControl, Preview as CategoryPreview, Schema as CategorySchema} from
-   "./admin-components/CategoriesComponent.js";
-import {Control as InteractiveImageControl, Preview as InteractiveImagePreview} from
-   "./admin-components/InteractiveImageComponent.js";
+import { Control as CategoryControl, Preview as CategoryPreview, Schema as CategorySchema } from
+   './admin-components/CategoriesComponent.js';
+import { Control as InteractiveImageControl, Preview as InteractiveImagePreview } from
+   './admin-components/InteractiveImageComponent.js';
 
 CMS.registerWidget('categories', CategoryControl, CategoryPreview, CategorySchema);
-
 CMS.registerWidget('interactive-image', InteractiveImageControl, InteractiveImagePreview);
-
 
 </script>
 <style>
-  .input-wrapper {
-      display: flex;
-  }
+    .iimg-image-wrapper {
+        position: relative;
+    }
+    .iimg-image-wrapper button{
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+    .input-wrapper {
+        display: flex;
+    }
 </style>
 </body>
 </html>
