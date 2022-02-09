@@ -98,8 +98,7 @@ const Control = createClass({
       type: 'text',
       style: {
         border: '1px solid black'
-      },
-      defaultValue: 'test'
+      }
     };
     const pointInputArgs = {
       className: 'iimg-points-input',
@@ -121,9 +120,11 @@ const Control = createClass({
 
     const iterator = () =>
       Array.from(this.valueCache.keys()).map(key => {
+        const hasMetaData = !!this.valueCache.get(key).has('metaData');
+        const tooltip = hasMetaData ? this.valueCache.get(key).get('metaData').get('tooltip') : '';
         return h('div', { ...pointInputArgs, 'data-key': key }, [
           h('span', {}, key),
-          h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key) })
+          h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key), defaultValue: tooltip })
         ]);
       });
     return h('div', { className: 'iimg-points-input-wrapper' }, iterator());
