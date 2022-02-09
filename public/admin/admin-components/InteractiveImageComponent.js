@@ -3,6 +3,19 @@ const Control = createClass({
   imageUploaded: false,
   imageUrl: '',
   pointsLength: 0,
+
+  componentDidMount() {
+    console.log(this.props.value ? this.props.value.get('points') : new Map());
+    if (!!this.props.value && this.props.value.has('points')) {
+      Array.from(this.props.value.get('points')).forEach(point => {
+        this.valueCache.set(point[0], point[1]);
+      });
+
+      this.forceUpdate();
+      // this.imageUploaded = true
+    }
+  },
+
   handleImageInput(evt) {
     const [file] = evt.target.files;
     if (file) {
@@ -32,19 +45,8 @@ const Control = createClass({
       points: this.valueCache
     });
   },
-  componentDidMount() {
-    // if(!!this.props.value && this.props.value.has("points")) {
-    //   console.log(this.props.value.get("points"))
-    // }
-    // console.log(this.valueCache)
-    console.log(this.props.value ? this.props.value.get('points') : new Map());
-    if (!!this.props.value && this.props.value.has('points')) {
-      this.valueCache = this.props.value.get('points');
-      this.forceUpdate();
-      // this.imageUploaded = true
-    }
-  },
   handleImageClick(e) {
+    console.log(e);
     if (!e) return;
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -54,13 +56,32 @@ const Control = createClass({
     const xPercentage = `${(x / rect.width) * 100}%`;
     const yPercentage = `${(y / rect.height) * 100}%`;
 
-    // save state
-    this.valueCache.set(key, { ...this.valueCache.get(key), x, y, xPercentage, yPercentage });
+    if (this.valueCache.has(key)) {
+      this.valueCache.set(key, { ...this.valueCache.get(key), x, y, xPercentage, yPercentage });
+    } else {
+      this.valueCache.set(key, { x, y, xPercentage, yPercentage });
+    }
     // update cms value
     this.props.onChange({
       image: this.imageUrl,
       points: this.valueCache
     });
+  },
+  setPointStyles(styleObject) {
+    styleObject.position = 'absolute';
+    styleObject.width = '30px';
+    styleObject.height = '30px';
+    styleObject.display = 'block';
+    styleObject.background = '#fff';
+    styleObject.borderRadius = '50%';
+    styleObject.transform = 'translate(-50%, -50%)';
+    return styleObject;
+  },
+  setPointPosition(styleObject, { xPercentage, yPercentage }) {
+    console.log({ xPercentage, yPercentage });
+    styleObject.left = `${xPercentage}`;
+    styleObject.top = `${yPercentage}`;
+    return styleObject;
   },
   renderPointsMetaData() {
     const args = {
@@ -69,9 +90,32 @@ const Control = createClass({
         border: '1px solid black'
       }
     };
-    return Array.from(this.valueCache.keys()).map(key => {
-      return [h('span', {}, key), h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key) })];
-    });
+    const pointInputArgs = {
+      className: 'iimg-points-input',
+      onMouseEnter: e => {
+        let key;
+        if (e.target.tagName === 'INPUT') {
+          key = e.target.parentNode.getAttribute('data-key');
+        } else {
+          key = e.target.getAttribute('data-key');
+        }
+        document.querySelectorAll(`span[data-key=${key}]`).forEach(element => {
+          element.classList.add('hovering');
+        });
+      },
+      onMouseLeave: () => {
+        document.querySelectorAll('.hovering').forEach(element => element.classList.remove('hovering'));
+      }
+    };
+
+    const iterator = () =>
+      Array.from(this.valueCache.keys()).map(key => {
+        return h('div', { ...pointInputArgs, 'data-key': key }, [
+          h('span', {}, key),
+          h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key) })
+        ]);
+      });
+    return h('div', { className: 'iimg-points-input-wrapper' }, iterator());
   },
   renderImage() {
     const args = {
@@ -85,16 +129,18 @@ const Control = createClass({
     };
     const points = () => {
       const pointsArray = Array.from(this.valueCache.entries());
-
+      console.log(pointsArray);
       return pointsArray.map(point => {
         const key = point[0];
+        const xPercentage = point[1].xPercentage;
+        const yPercentage = point[1].yPercentage;
         // const value = point[1];
         const styleObject = {};
         const style = {
           ...this.setPointStyles(styleObject),
           ...this.setPointPosition(styleObject, {
-            xPercentage: point[1].get('xPercentage'),
-            yPercentage: point[1].get('yPercentage')
+            xPercentage: !xPercentage ? point[1].get('xPercentage') : xPercentage,
+            yPercentage: !yPercentage ? point[1].get('yPercentage') : yPercentage
           })
         };
 
@@ -120,22 +166,6 @@ const Control = createClass({
       onInput: this.handleImageInput
     };
     return h('input', args);
-  },
-  setPointStyles(styleObject) {
-    styleObject.position = 'absolute';
-    styleObject.width = '30px';
-    styleObject.height = '30px';
-    styleObject.display = 'block';
-    styleObject.background = '#fff';
-    styleObject.borderRadius = '50%';
-    styleObject.transform = 'translate(-50%, -50%)';
-    return styleObject;
-  },
-  setPointPosition(styleObject, { xPercentage, yPercentage }) {
-    console.log({ xPercentage, yPercentage });
-    styleObject.left = `${xPercentage}`;
-    styleObject.top = `${yPercentage}`;
-    return styleObject;
   },
   render: function () {
     return h('div', null, [
