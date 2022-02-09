@@ -5,7 +5,7 @@ const Control = createClass({
   pointsLength: 0,
 
   componentDidMount() {
-    console.log(this.props.value ? this.props.value.get('points') : new Map());
+    console.log(this.props.value);
     if (!!this.props.value && this.props.value.has('points')) {
       Array.from(this.props.value.get('points')).forEach(point => {
         this.valueCache.set(point[0], point[1]);
@@ -15,7 +15,11 @@ const Control = createClass({
       // this.imageUploaded = true
     }
   },
-
+  componentWillUnmount() {
+    this.imageUrl = '';
+    this.imageUploaded = false;
+    this.valueCache.clear();
+  },
   handleImageInput(evt) {
     const [file] = evt.target.files;
     if (file) {
@@ -29,24 +33,26 @@ const Control = createClass({
   handleRemoveImage() {
     this.imageUrl = '';
     this.imageUploaded = false;
-    this.forceUpdate();
+    this.valueCache.clear();
+    this.props.onChange({
+      image: this.imageUrl,
+      points: this.valueCache
+    });
   },
   handlePointMetaInput(e, key) {
-    if (this.valueCache.has(key)) {
-      this.valueCache.set(key, {
-        ...this.valueCache.get(key),
-        metaData: {
-          tooltip: e.target.value
-        }
-      });
-    }
+    const map = new Map();
+    this.valueCache.get(key).forEach((v, k) => {
+      map.set(k, v);
+    });
+    map.set('metaData', new Map().set('tooltip', e.target.value));
+    this.valueCache.set(key, map);
+
     this.props.onChange({
       image: this.imageUrl,
       points: this.valueCache
     });
   },
   handleImageClick(e) {
-    console.log(e);
     if (!e) return;
     const rect = e.target.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -56,11 +62,9 @@ const Control = createClass({
     const xPercentage = `${(x / rect.width) * 100}%`;
     const yPercentage = `${(y / rect.height) * 100}%`;
 
-    if (this.valueCache.has(key)) {
-      this.valueCache.set(key, { ...this.valueCache.get(key), x, y, xPercentage, yPercentage });
-    } else {
-      this.valueCache.set(key, { x, y, xPercentage, yPercentage });
-    }
+    const map = this.objectToMap({ x, y, yPercentage, xPercentage });
+    this.valueCache.set(key, map);
+
     // update cms value
     this.props.onChange({
       image: this.imageUrl,
@@ -78,17 +82,24 @@ const Control = createClass({
     return styleObject;
   },
   setPointPosition(styleObject, { xPercentage, yPercentage }) {
-    console.log({ xPercentage, yPercentage });
     styleObject.left = `${xPercentage}`;
     styleObject.top = `${yPercentage}`;
     return styleObject;
+  },
+  objectToMap(data) {
+    const map = new Map();
+    Object.keys(data).map(objectKey => {
+      map.set(objectKey, data[objectKey]);
+    });
+    return map;
   },
   renderPointsMetaData() {
     const args = {
       type: 'text',
       style: {
         border: '1px solid black'
-      }
+      },
+      defaultValue: 'test'
     };
     const pointInputArgs = {
       className: 'iimg-points-input',
@@ -129,12 +140,10 @@ const Control = createClass({
     };
     const points = () => {
       const pointsArray = Array.from(this.valueCache.entries());
-      console.log(pointsArray);
       return pointsArray.map(point => {
         const key = point[0];
         const xPercentage = point[1].xPercentage;
         const yPercentage = point[1].yPercentage;
-        // const value = point[1];
         const styleObject = {};
         const style = {
           ...this.setPointStyles(styleObject),
