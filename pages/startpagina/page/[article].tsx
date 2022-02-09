@@ -85,8 +85,8 @@ export async function getStaticProps({ params }: { params: { article: string } }
 
   return {
     props: {
-      homeTitle,
-      title,
+      homeTitle: homeTitle ?? '',
+      title: title ?? '',
       articles
     }
   };

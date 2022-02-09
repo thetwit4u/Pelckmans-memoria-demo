@@ -32,6 +32,18 @@ const Control = createClass({
       points: this.valueCache
     });
   },
+  componentDidMount() {
+    // if(!!this.props.value && this.props.value.has("points")) {
+    //   console.log(this.props.value.get("points"))
+    // }
+    // console.log(this.valueCache)
+    console.log(this.props.value ? this.props.value.get('points') : new Map());
+    if (!!this.props.value && this.props.value.has('points')) {
+      this.valueCache = this.props.value.get('points');
+      this.forceUpdate();
+      // this.imageUploaded = true
+    }
+  },
   handleImageClick(e) {
     if (!e) return;
     const rect = e.target.getBoundingClientRect();
@@ -76,11 +88,14 @@ const Control = createClass({
 
       return pointsArray.map(point => {
         const key = point[0];
-        const value = point[1];
+        // const value = point[1];
         const styleObject = {};
         const style = {
           ...this.setPointStyles(styleObject),
-          ...this.setPointPosition(styleObject, value)
+          ...this.setPointPosition(styleObject, {
+            xPercentage: point[1].get('xPercentage'),
+            yPercentage: point[1].get('yPercentage')
+          })
         };
 
         return h(
@@ -116,9 +131,10 @@ const Control = createClass({
     styleObject.transform = 'translate(-50%, -50%)';
     return styleObject;
   },
-  setPointPosition(styleObject, { x, y }) {
-    styleObject.left = `${x}px`;
-    styleObject.top = `${y}px`;
+  setPointPosition(styleObject, { xPercentage, yPercentage }) {
+    console.log({ xPercentage, yPercentage });
+    styleObject.left = `${xPercentage}`;
+    styleObject.top = `${yPercentage}`;
     return styleObject;
   },
   render: function () {

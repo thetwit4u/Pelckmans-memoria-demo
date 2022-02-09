@@ -6,27 +6,55 @@ articles:
     images:
       - image: /cms-images/profile-euri.jpeg
         interactiveImage:
-          image: blob:http://localhost:3000/65ff4f7c-3a19-4900-ab41-d02d676705aa
+          image: blob:http://localhost:3000/c9549078-d942-48d3-b537-6b390580ca7f
           points:
             point-0:
-              x: 85.5
-              y: 80
-              xPercentage: 12.723214285714285%
-              yPercentage: 21.164021164021165%
+              x: 134.5
+              y: 94
+              xPercentage: 20.014880952380953%
+              yPercentage: 25.767764595022914%
               metaData:
-                tooltip: "Links "
+                tooltip: test
             point-1:
-              x: 309.5
-              y: 126
-              xPercentage: 46.05654761904761%
-              yPercentage: 33.33333333333333%
+              x: 427.5
+              y: 138
+              xPercentage: 63.61607142857143%
+              yPercentage: 37.829271426735765%
               metaData:
-                tooltip: Neus
+                tooltip: t
             point-2:
-              x: 532.5
-              y: 83
-              xPercentage: 79.24107142857143%
-              yPercentage: 21.957671957671955%
+              x: 162.5
+              y: 207
+              xPercentage: 24.18154761904762%
+              yPercentage: 56.74390714010366%
               metaData:
-                tooltip: Rechts
+                tooltip: t
+            point-3:
+              x: 37.5
+              y: 238
+              xPercentage: 5.580357142857143%
+              yPercentage: 65.2417869533559%
+              metaData:
+                tooltip: t
+            point-4:
+              x: 503.5
+              y: 51
+              xPercentage: 74.92559523809523%
+              yPercentage: 13.980382918576261%
+              metaData:
+                tooltip: t
+            point-5:
+              x: 481.5
+              y: 249
+              xPercentage: 71.65178571428571%
+              yPercentage: 68.25716366128411%
+              metaData:
+                tooltip: hj
+            point-6:
+              x: 328.5
+              y: 270
+              xPercentage: 48.88392857142857%
+              yPercentage: 74.01379192187433%
+              metaData:
+                tooltip: jhkh
 ---
