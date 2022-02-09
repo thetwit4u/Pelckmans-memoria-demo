@@ -18,6 +18,20 @@ const Control = createClass({
     this.imageUploaded = false;
     this.forceUpdate();
   },
+  handlePointMetaInput(e, key) {
+    if (this.valueCache.has(key)) {
+      this.valueCache.set(key, {
+        ...this.valueCache.get(key),
+        metaData: {
+          tooltip: e.target.value
+        }
+      });
+    }
+    this.props.onChange({
+      image: this.imageUrl,
+      points: this.valueCache
+    });
+  },
   handleImageClick(e) {
     if (!e) return;
     const rect = e.target.getBoundingClientRect();
@@ -34,6 +48,17 @@ const Control = createClass({
     this.props.onChange({
       image: this.imageUrl,
       points: this.valueCache
+    });
+  },
+  renderPointsMetaData() {
+    const args = {
+      type: 'text',
+      style: {
+        border: '1px solid black'
+      }
+    };
+    return Array.from(this.valueCache.keys()).map(key => {
+      return [h('span', {}, key), h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key) })];
     });
   },
   renderImage() {
@@ -97,7 +122,11 @@ const Control = createClass({
     return styleObject;
   },
   render: function () {
-    return h('div', null, [this.imageUploaded ? this.renderImage() : this.renderFileInput()]);
+    return h('div', null, [
+      this.imageUploaded
+        ? [this.renderImage(), this.valueCache.size !== 0 ? this.renderPointsMetaData() : null]
+        : this.renderFileInput()
+    ]);
   }
 });
 

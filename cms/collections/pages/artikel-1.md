@@ -6,26 +6,27 @@ articles:
     images:
       - image: /cms-images/profile-euri.jpeg
         interactiveImage:
-          image: blob:http://localhost:3000/94974163-f3af-498e-a4b8-e4ac7a3d868d
+          image: blob:http://localhost:3000/65ff4f7c-3a19-4900-ab41-d02d676705aa
           points:
             point-0:
-              x: 119
-              y: 52
-              xPercentage: 17.708333333333336%
-              yPercentage: 14.254508073842464%
+              x: 85.5
+              y: 80
+              xPercentage: 12.723214285714285%
+              yPercentage: 21.164021164021165%
+              metaData:
+                tooltip: "Links "
             point-1:
-              x: 343
-              y: 109
-              xPercentage: 51.041666666666664%
-              yPercentage: 29.87964192401593%
+              x: 309.5
+              y: 126
+              xPercentage: 46.05654761904761%
+              yPercentage: 33.33333333333333%
+              metaData:
+                tooltip: Neus
             point-2:
-              x: 117
-              y: 235
-              xPercentage: 17.410714285714285%
-              yPercentage: 64.41941148755728%
-            point-3:
-              x: 568
-              y: 176
-              xPercentage: 84.52380952380952%
-              yPercentage: 48.24602732685142%
+              x: 532.5
+              y: 83
+              xPercentage: 79.24107142857143%
+              yPercentage: 21.957671957671955%
+              metaData:
+                tooltip: Rechts
 ---
