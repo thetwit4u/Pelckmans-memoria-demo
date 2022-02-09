@@ -25,8 +25,11 @@ const Control = createClass({
     const y = e.clientY - rect.top;
     const key = `point-${this.valueCache.size}`;
 
+    const xPercentage = `${(x / rect.width) * 100}%`;
+    const yPercentage = `${(y / rect.height) * 100}%`;
+
     // save state
-    this.valueCache.set(key, { ...this.valueCache.get(key), x, y });
+    this.valueCache.set(key, { ...this.valueCache.get(key), x, y, xPercentage, yPercentage });
     // update cms value
     this.props.onChange({
       image: this.imageUrl,
