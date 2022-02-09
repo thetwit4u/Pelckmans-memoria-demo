@@ -5,7 +5,6 @@ const Control = createClass({
   pointsLength: 0,
 
   componentDidMount() {
-    console.log(this.props.value);
     if (!!this.props.value && this.props.value.has('points')) {
       Array.from(this.props.value.get('points')).forEach(point => {
         this.valueCache.set(point[0], point[1]);
@@ -217,7 +216,6 @@ const Preview = createClass({
     this.imgPreview.dimensions.height = element.height;
   },
   addPointsToPreview() {
-    console.log(this.props.value);
     // get image parent div
     const imageParentDiv = this.imgPreview.element.parentElement;
     // set position relative on image parent div
@@ -234,12 +232,8 @@ const Preview = createClass({
     //   imageParentDiv.append(point);
     // }
   },
-  componentDidUpdate() {
-    console.log('componentDidUpdate');
-  },
   render: function () {
     // const { value } = this.props;
-    console.log('rerender preivew');
     if (this.mounted) {
       this.addPointsToPreview();
     }
