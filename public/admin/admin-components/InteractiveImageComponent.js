@@ -3,31 +3,30 @@ const Control = createClass({
   imageUploaded: false,
   imageUrl: '',
   pointsLength: 0,
-
+  parentImage: false,
   componentDidMount() {
+    this.setParentImage();
+
     if (!!this.props.value && this.props.value.has('points')) {
       Array.from(this.props.value.get('points')).forEach(point => {
         this.valueCache.set(point[0], point[1]);
       });
-
       this.forceUpdate();
-      // this.imageUploaded = true
     }
   },
   componentWillUnmount() {
+    this.setParentImage();
     this.imageUrl = '';
     this.imageUploaded = false;
     this.valueCache.clear();
   },
-  handleImageInput(evt) {
-    const [file] = evt.target.files;
-    if (file) {
-      this.imageUrl = URL.createObjectURL(file);
-      this.imageUploaded = true;
-    } else {
-      this.imageUploaded = false;
-    }
+  handleRefresh() {
+    this.setParentImage();
     this.forceUpdate();
+    this.props.onChange({
+      image: this.imageUrl,
+      points: this.valueCache
+    });
   },
   handleRemoveImage() {
     this.imageUrl = '';
@@ -80,6 +79,16 @@ const Control = createClass({
     styleObject.transform = 'translate(-50%, -50%)';
     return styleObject;
   },
+  setParentImage() {
+    const parentImg = document.querySelector(`#${this.props.forID}`).parentNode.parentNode.querySelector('img');
+    if (!!parentImg) {
+      this.parentImage = parentImg;
+      this.imageUploaded = true;
+    } else {
+      this.parentImage = false;
+      this.imageUploaded = false;
+    }
+  },
   setPointPosition(styleObject, { xPercentage, yPercentage }) {
     styleObject.left = `${xPercentage}`;
     styleObject.top = `${yPercentage}`;
@@ -95,6 +104,7 @@ const Control = createClass({
   renderPointsMetaData() {
     const args = {
       type: 'text',
+      className: this.props.classNameWrapper ?? '',
       style: {
         border: '1px solid black'
       }
@@ -123,7 +133,11 @@ const Control = createClass({
         const tooltip = hasMetaData ? this.valueCache.get(key).get('metaData').get('tooltip') : '';
         return h('div', { ...pointInputArgs, 'data-key': key }, [
           h('span', {}, key),
-          h('input', { ...args, onInput: e => this.handlePointMetaInput(e, key), defaultValue: tooltip })
+          h('input', {
+            ...args,
+            onInput: e => this.handlePointMetaInput(e, key),
+            defaultValue: tooltip
+          })
         ]);
       });
     return h('div', { className: 'iimg-points-input-wrapper' }, iterator());
@@ -131,7 +145,7 @@ const Control = createClass({
   renderImage() {
     const args = {
       img: {
-        src: this.imageUrl,
+        src: this.parentImage.src,
         onClick: this.handleImageClick
       },
       button: {
@@ -165,22 +179,15 @@ const Control = createClass({
     };
     return h('div', { className: 'iimg-image-wrapper' }, [
       h('div', null, [h('img', args.img), h('div', {}, points())]),
-      h('button', args.button, `Remove image`)
+      h('div', {}, [
+        h('button', args.button, `Clear points`),
+        h('button', { onClick: () => this.handleRefresh() }, `Refresh Image`)
+      ])
     ]);
   },
-  renderFileInput() {
-    const args = {
-      type: 'file',
-      accept: 'image/png, image/jpeg, image/png, image/jpg',
-      onInput: this.handleImageInput
-    };
-    return h('input', args);
-  },
   render: function () {
-    return h('div', null, [
-      this.imageUploaded
-        ? [this.renderImage(), this.valueCache.size !== 0 ? this.renderPointsMetaData() : null]
-        : this.renderFileInput()
+    return h('div', { id: this.props.forID }, [
+      [this.renderImage(), this.valueCache.size !== 0 ? this.renderPointsMetaData() : null]
     ]);
   }
 });
