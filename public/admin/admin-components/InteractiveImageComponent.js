@@ -102,13 +102,6 @@ const Control = createClass({
     return map;
   },
   renderPointsMetaData() {
-    const args = {
-      type: 'text',
-      className: this.props.classNameWrapper ?? '',
-      style: {
-        border: '1px solid black'
-      }
-    };
     const pointInputArgs = {
       className: 'iimg-points-input',
       onMouseEnter: e => {
@@ -134,7 +127,11 @@ const Control = createClass({
         return h('div', { ...pointInputArgs, 'data-key': key }, [
           h('span', {}, key),
           h('input', {
-            ...args,
+            type: 'text',
+            className: this.props.classNameWrapper ?? '',
+            style: {
+              border: '1px solid black'
+            },
             onInput: e => this.handlePointMetaInput(e, key),
             defaultValue: tooltip
           })
@@ -143,15 +140,6 @@ const Control = createClass({
     return h('div', { className: 'iimg-points-input-wrapper' }, iterator());
   },
   renderImage() {
-    const args = {
-      img: {
-        src: this.parentImage.src,
-        onClick: this.handleImageClick
-      },
-      button: {
-        onClick: this.handleRemoveImage
-      }
-    };
     const points = () => {
       const pointsArray = Array.from(this.valueCache.entries());
       return pointsArray.map(point => {
@@ -178,9 +166,15 @@ const Control = createClass({
       });
     };
     return h('div', { className: 'iimg-image-wrapper' }, [
-      h('div', null, [h('img', args.img), h('div', {}, points())]),
+      h('div', null, [
+        h('img', {
+          src: this.parentImage.src,
+          onClick: this.handleImageClick
+        }),
+        h('div', {}, points())
+      ]),
       h('div', {}, [
-        h('button', args.button, `Clear points`),
+        h('button', { onClick: () => this.handleRemoveImage() }, `Clear points`),
         h('button', { onClick: () => this.handleRefresh() }, `Refresh Image`)
       ])
     ]);
