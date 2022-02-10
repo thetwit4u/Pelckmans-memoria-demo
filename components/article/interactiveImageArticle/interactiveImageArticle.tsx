@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { ImageArticleProps } from './types';
 import { imageLoader } from '@utils';
 import { IInteractiveImagePoints } from '../../../utils/service/types';
-import styleClasses from './style.module.scss';
 
 const InteractiveImageArticle = (image: ImageArticleProps): JSX.Element | null => {
   if (!image.isInteractiveImage || !image.hasOwnProperty('interactiveImage')) {
@@ -28,13 +27,13 @@ const InteractiveImageArticle = (image: ImageArticleProps): JSX.Element | null =
             return (
               <div
                 key={`${key}`}
-                className={styleClasses['iimg-point']}
+                className={'iimg-point'}
                 style={{
                   top: points[key].yPercentage,
                   left: points[key].xPercentage
-                }}
-                title={!!metadata ? metadata.tooltip : ''}>
-                {''}
+                }}>
+                <img alt='interactive icon' src='/interactiveIcon.png' />
+                <span>{!!metadata ? metadata.tooltip : ''}</span>
               </div>
             );
           })}

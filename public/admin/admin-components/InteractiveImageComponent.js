@@ -6,13 +6,12 @@ const Control = createClass({
   parentImage: false,
   componentDidMount() {
     this.setParentImage();
-
     if (!!this.props.value && this.props.value.has('points')) {
       Array.from(this.props.value.get('points')).forEach(point => {
         this.valueCache.set(point[0], point[1]);
       });
-      this.forceUpdate();
     }
+    this.forceUpdate();
   },
   componentWillUnmount() {
     this.setParentImage();
