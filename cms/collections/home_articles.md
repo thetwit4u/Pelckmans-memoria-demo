@@ -22,7 +22,9 @@ articles:
               yPercentage: 53.12625518811086%
               xPercentage: 37.94642857142857%
               metaData:
-                tooltip: Dit is een test
+                tooltip: Aenean viverra rhoncus pede. Duis vel nibh at velit scelerisque
+                  suscipit.  Fusce fermentum. Praesent metus tellus, elementum
+                  eu, semper a, adipiscing nec, purus.
             point-2:
               x: 110
               y: 161
