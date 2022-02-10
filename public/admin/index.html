@@ -1,12 +1,47 @@
 <!doctype html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8"/>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"/>
   <title>Content Manager</title>
 </head>
 <body>
-<!-- Include the script that builds the page and powers Netlify CMS -->
 <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/immutable/4.0.0/immutable.min.js"></script>
+<script type="module">
+import { Control as CategoryControl, Preview as CategoryPreview, Schema as CategorySchema } from
+   './admin-components/CategoriesComponent.js';
+import { Control as InteractiveImageControl, Preview as InteractiveImagePreview } from
+   './admin-components/InteractiveImageComponent.js';
+
+CMS.registerWidget('categories', CategoryControl, CategoryPreview, CategorySchema);
+CMS.registerWidget('interactive-image', InteractiveImageControl, InteractiveImagePreview);
+
+</script>
+<style>
+    .iimg-image-wrapper {
+        position: relative;
+    }
+    .hovering {
+        background: yellow !important;
+    }
+    .iimg-points-input input {
+        padding: 0.6rem 0.7rem;
+    }
+    .iimg-points-input span {
+        min-width: 100px;
+    }
+    .iimg-point {
+        display: block;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        position: absolute;
+        width: 24px;
+        height: 24px;
+    }
+</style>
 </body>
 </html>
