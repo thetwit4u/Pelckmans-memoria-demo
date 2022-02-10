@@ -5,7 +5,6 @@ backend:
   name: github
   repo: thetwit4u/Pelckmans-memoria-demo
   branch: main
-  app_id: 171539
 local_backend: false
 
 collections:
