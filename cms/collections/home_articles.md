@@ -22,7 +22,7 @@ articles:
               yPercentage: 53.12625518811086%
               xPercentage: 37.94642857142857%
               metaData:
-                tooltip: Nam adipiscing. Cras sagittis.
+                tooltip: Dit is een test
             point-2:
               x: 110
               y: 161
