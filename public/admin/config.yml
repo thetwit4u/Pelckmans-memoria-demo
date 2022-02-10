@@ -41,7 +41,8 @@ collections:
                 widget: list
                 fields:
                   - { label: Afbeelding, name: image, widget: image }
-                  - { name: interactiveImage, label: Interactive Afbeelding, widget: interactive-image }
+                  - { name: interactiveImage, label: Interactive Afbeelding, widget:
+                    interactive-image, required: false }
                   - {
                       label: Legende,
                       hint: Enkel getoond bij meerdere afbeeldingen,
@@ -75,7 +76,8 @@ collections:
             widget: list
             fields:
               - { label: Afbeelding, name: image, widget: image }
-              - { name: interactiveImage, label: Interactive Afbeelding, widget: interactive-image }
+              - { name: interactiveImage, label: Interactive Afbeelding, widget:
+                interactive-image, required: false }
 #              - label: Interacties
 #                name: image-interactions
 #                widget: list
