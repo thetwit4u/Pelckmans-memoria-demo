@@ -13,4 +13,9 @@ articles:
       onze regio opnieuw gebouwd, grotendeels in steen (restanten van de muur
       van het Castellum Magus Treverorum, begin 4de eeuw).
     icon_type: read
+  - title: Test
+    icon_type: watch
+    body: test
+    images:
+      - image: /cms-images/529876_9779_mem2_ict_04_cultuur_030.jpeg
 ---
