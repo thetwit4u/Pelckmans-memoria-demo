@@ -68,16 +68,6 @@ const Control = createClass({
       points: this.valueCache
     });
   },
-  setPointStyles(styleObject) {
-    styleObject.position = 'absolute';
-    styleObject.width = '30px';
-    styleObject.height = '30px';
-    styleObject.display = 'block';
-    styleObject.background = '#fff';
-    styleObject.borderRadius = '50%';
-    styleObject.transform = 'translate(-50%, -50%)';
-    return styleObject;
-  },
   setParentImage() {
     const parentImg = document.querySelector(`#${this.props.forID}`).parentNode.parentNode.querySelector('img');
     if (!!parentImg) {
@@ -147,7 +137,6 @@ const Control = createClass({
         const yPercentage = point[1].yPercentage;
         const styleObject = {};
         const style = {
-          ...this.setPointStyles(styleObject),
           ...this.setPointPosition(styleObject, {
             xPercentage: !xPercentage ? point[1].get('xPercentage') : xPercentage,
             yPercentage: !yPercentage ? point[1].get('yPercentage') : yPercentage
@@ -158,9 +147,10 @@ const Control = createClass({
           'span',
           {
             'data-key': key,
-            style
+            style,
+            className: 'iimg-point'
           },
-          ''
+          [h('img', { src: '/interactiveIcon.png' })]
         );
       });
     };
@@ -171,16 +161,19 @@ const Control = createClass({
           onClick: this.handleImageClick
         }),
         h('div', {}, points())
-      ]),
-      h('div', {}, [
-        h('button', { onClick: () => this.handleRemoveImage() }, `Clear points`),
-        h('button', { onClick: () => this.handleRefresh() }, `Refresh Image`)
       ])
     ]);
   },
   render: function () {
     return h('div', { id: this.props.forID }, [
-      [this.renderImage(), this.valueCache.size !== 0 ? this.renderPointsMetaData() : null]
+      [
+        this.renderImage(),
+        h('div', {}, [
+          h('button', { onClick: () => this.handleRemoveImage() }, `Clear points`),
+          h('button', { onClick: () => this.handleRefresh() }, `Refresh Image`)
+        ]),
+        this.valueCache.size !== 0 ? this.renderPointsMetaData() : null
+      ]
     ]);
   }
 });

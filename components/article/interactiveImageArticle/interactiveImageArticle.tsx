@@ -14,6 +14,7 @@ const InteractiveImageArticle = (image: ImageArticleProps): JSX.Element | null =
     <section className='p-6'>
       <div className={'image-container'} style={{ position: 'relative' }}>
         <Image
+          priority
           unoptimized
           alt={image.alt}
           className='image-item'

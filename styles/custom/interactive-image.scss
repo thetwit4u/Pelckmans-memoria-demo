@@ -1,6 +1,4 @@
 .iimg-point {
-  background: #fff;
-  border-radius: 50%;
   cursor: pointer;
   height: 20px;
   position: absolute;
@@ -15,12 +13,32 @@
 
   > span {
     background: #fff;
+    box-shadow: 0 4px 7px -4px rgb(0 0 0 / 50%);
     display: none;
+    margin-left: 10px;
     margin-top: 1rem;
-    min-width: 200px;
+    min-width: 300px;
     padding: 1rem;
-    text-align: center;
     transform: translateX(-50%);
     width: auto;
+
+    &::after {
+      border-bottom: 8px solid #fff;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      content: "";
+      height: 0;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translate(-50%, -100%);
+      width: 0;
+    }
+  }
+
+  > img {
+    height: 24px;
+    max-width: 24px;
+    width: 24px;
   }
 }
