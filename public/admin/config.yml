@@ -1,10 +1,11 @@
 backend:
-  name: git-gateway
-local_backend: true
+  name: github
+  repo: thetwit4u/Pelckmans-memoria-demo
+  branch: main
+local_backend: false
 media_folder: public/cms-images
 public_folder: /cms-images
-publish_mode: editorial_workflow
-display_url: http://localhost:3000
+
 
 collections:
   - label: Homepage
