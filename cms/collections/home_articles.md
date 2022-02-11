@@ -54,4 +54,21 @@ articles:
               metaData:
                 tooltip: Phasellus gravida semper nisi. Nunc interdum lacus sit amet orci.
                   Praesent ac massa at ligula laoreet iaculis.
+  - title: Tekst
+    body: >-
+      Praesent egestas tristique nibh. Class aptent taciti sociosqu ad litora
+      torquent per conubia nostra, per inceptos hymenaeos. Nunc sed turpis.
+
+
+      Donec sodales sagittis magna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In ac dui quis mi consectetuer lacinia. Proin magna.
+
+
+      Vivamus quis mi. Pellentesque posuere. Aenean commodo ligula eget dolor.
+
+
+      Sed hendrerit. Proin sapien ipsum, porta a, auctor quis, euismod ut, mi. Mauris turpis nunc, blandit et, volutpat molestie, porta ut, ligula.
+
+
+      Vestibulum turpis sem, aliquet eget, lobortis pellentesque, rutrum eu, nisl. Nam adipiscing. In dui magna, posuere eget, vestibulum et, tempor auctor, justo.
+    icon_type: read
 ---
