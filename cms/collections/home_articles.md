@@ -13,9 +13,7 @@ articles:
               yPercentage: 24.135314856964342%
               xPercentage: 72.02380952380952%
               metaData:
-                tooltip: De bescheiden omvang van de castella in onze streken komt door het
-                  landschap. De vele stroomruggen, natuurlijke zandverhogingen
-                  en de drassigheid boden weinig ruimte voor zware bebouwing.
+                tooltip: Test online
             point-1:
               x: 409
               y: 147.5
